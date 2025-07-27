@@ -1,0 +1,103 @@
+<ng-container *ngIf="isAuthorized; else unauthorized">
+<!-- App Header for Profile Page -->
+<header class="flex items-center justify-between px-8 py-4 bg-[#0C1424] border-b border-[#1C2538] shadow-sm">
+  <!-- Left Section: Back + Logo -->
+  <div class="flex items-center gap-6">
+    <button class="flex items-center text-sm text-white hover:text-orange-400 transition" routerLink="/">
+      <i class="lucide lucide-arrow-left w-5 h-5 mr-1"></i>
+      ← Back to Home
+    </button>
+
+    <div class="flex items-center gap-2">
+      <span class="text-xl font-bold text-white">🧑‍💻 IgKnight</span>
+      <span class="text-orange-400 font-semibold text-sm tracking-wide bg-[#1c2538] px-2 py-0.5 rounded">Profile</span>
+    </div>
+  </div>
+
+  <!-- Right Section: User Badge -->
+  <div class="flex items-center gap-3">
+    <img
+      [src]="user.profilePic || 'https://api.dicebear.com/7.x/lorelei/svg?seed=profile'"
+      alt="User"
+      class="w-8 h-8 rounded-full border border-gray-700"
+    />
+    <div class="text-sm text-white">
+      <p class="font-medium">{{ user.userName || 'Learner' }}</p>
+      <p class="text-xs text-gray-400">{{ user.email || 'No email' }}</p>
+    </div>
+  </div>
+</header>
+
+<div class="flex h-screen text-white bg-black">
+  <!-- Sidebar -->
+  <aside class="w-64 bg-[#111] p-6 space-y-6">
+    <nav class="space-y-4 text-sm font-medium">
+      <div
+        (click)="selectTab('user-details')"
+        [ngClass]="{ 'text-orange-500': selectedTab === 'user-details' }"
+        class="flex items-center gap-2 cursor-pointer transition-colors"
+      >
+        <i class="lucide lucide-user w-5 h-5"></i>
+        <span>User Details</span>
+      </div>
+
+      <div
+        (click)="selectTab('assignments')"
+        [ngClass]="{ 'text-orange-500': selectedTab === 'assignments' }"
+        class="flex items-center gap-2 cursor-pointer transition-colors"
+      >
+        <i class="lucide lucide-file-text w-5 h-5"></i>
+        <span>View Assignments</span>
+      </div>
+
+      <div
+        (click)="selectTab('saved-code')"
+        [ngClass]="{ 'text-orange-500': selectedTab === 'saved-code' }"
+        class="flex items-center gap-2 cursor-pointer transition-colors"
+      >
+        <i class="lucide lucide-code w-5 h-5"></i>
+        <span>View Saved Code</span>
+      </div>
+    </nav>
+  </aside>
+
+  <!-- Right Content -->
+  <section class="flex-1 overflow-y-auto p-8 space-y-10">
+    <app-user-details *ngIf="selectedTab === 'user-details'" [user]="user"></app-user-details>
+    <app-assignments *ngIf="selectedTab === 'assignments'"></app-assignments>
+    <app-saved-code *ngIf="selectedTab === 'saved-code'"></app-saved-code>
+  </section>
+</div>
+</ng-container>
+
+<!-- ❌ Unauthorized UI -->
+<ng-template #unauthorized>
+  <div class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+    <!-- 🔆 Background image -->
+    <img
+      src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1920&q=80"
+      class="absolute inset-0 w-full h-full object-cover opacity-20"
+      alt="Unauthorized Background"
+    />
+
+    <!-- 🟧 Dark overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-70 backdrop-blur-sm"></div>
+
+    <!-- 🚫 Content -->
+    <div class="relative z-10 text-center px-6 max-w-md">
+      <div class="flex justify-center mb-6">
+        <i class="lucide lucide-lock w-14 h-14 text-orange-500 animate-pulse drop-shadow-lg"></i>
+      </div>
+      <h2 class="text-3xl font-bold text-white mb-2 drop-shadow">Access Denied</h2>
+      <p class="text-gray-300 text-sm mb-6">
+        You need to be logged in to view your profile. Please login to continue your journey.
+      </p>
+      <a
+        routerLink="/login"
+        class="bg-orange-500 hover:bg-orange-600 text-white px-5 py-2 rounded shadow-md transition"
+      >
+        🔐 Login to Continue
+      </a>
+    </div>
+  </div>
+</ng-template>

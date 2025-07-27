@@ -1,0 +1,210 @@
+<div class="rounded-xl w-full bg-[#131c2b] text-white p-4 space-y-4 shadow-lg">
+  <!-- Top Toolbar -->
+  <div class="flex justify-between items-center">
+    <!-- Language Dropdown -->
+    <div class="flex items-center gap-3">
+      <label class="text-sm font-medium">Language:</label>
+      <select
+        class="bg-[#2e2e2e] text-white px-3 py-1 rounded-md text-sm focus:outline-none"
+        [(ngModel)]="language"
+        (change)="onLanguageChange(language)"
+      >
+        <option value="python">Python</option>
+        <option value="cpp">C</option>
+        <option value="java">Java</option>
+      </select>
+    </div>
+
+    <!-- Right Toolbar Buttons -->
+    <div class="flex gap-3 items-center text-xs">
+      <button class="text-gray-300 inline-flex items-center gap-1 hover:text-white transition" (click)="resetCode()">
+  <svg
+    class="w-4 h-4 align-middle"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round">
+    <path d="M10 2h4" />
+    <path d="M12 14v-4" />
+    <path d="M4 13a8 8 0 0 1 8-7 8 8 0 1 1-5.3 14L4 17.6" />
+    <path d="M9 17H4v5" />
+  </svg>
+  Reset Code
+</button>
+
+<button class="text-gray-300 inline-flex items-center gap-1 hover:text-white transition" (click)="copyCode()">
+  <svg
+    class="w-4 h-4 align-middle"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round">
+    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+  </svg>
+  Copy
+</button>
+
+      <button
+  [disabled]="isRunning"
+  class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-1.5 rounded-md font-semibold transition flex items-center gap-2"
+  (click)="runCode()"
+>
+<span *ngIf="isRunning" class="flex items-center gap-1">
+  <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+    <path class="opacity-75" fill="currentColor"
+      d="M4 12a8 8 0 018-8v8z"></path>
+  </svg>
+  Running...
+  </span>
+<span *ngIf="!isRunning" class="flex items-center gap-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play-icon lucide-play"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+  Run Code
+</span>
+</button>
+
+    </div>
+  </div>
+
+  <!-- Monaco Editor Section -->
+  <!-- Monaco Editor Section -->
+<!-- Monaco Editor Section -->
+<div class="relative w-full">
+  <!-- Example Snippet Tooltip -->
+<div class="relative group inline-flex items-center text-sm text-gray-400 mb-3">
+  <span class=" cursor-pointer inline-flex gap-1 text-yellow-500">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-lightbulb-icon lucide-lightbulb"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+    <span class ="text-white">Tip..</span></span>
+  <div
+    class="absolute top-full left-0 z-10 w-[300px] bg-[#1e293b] text-white text-xs p-3 rounded shadow-lg border border-gray-600 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+  >
+    <pre class="whitespace-pre-wrap text-gray-300 font-mono">
+{{ getExampleSnippet(language) }}
+    </pre>
+  </div>
+</div>
+
+
+  <div class="h-[70vh] w-full">
+    <ngx-monaco-editor
+      #monacoEditor
+      [options]="editorOptions"
+      [(ngModel)]="code"
+      style="height: 100%"
+      class="w-full border border-gray-700 rounded"
+      (onInit)="onEditorInit($event)">
+    </ngx-monaco-editor>
+  </div>
+</div>
+
+
+
+  <!-- Bottom Tabs -->
+  <div class="flex items-center text-sm text-gray-400 border-t border-gray-700 pt-2">
+    <div class="mr-6 font-semibold text-white border-b-2 border-orange-500 pb-1">
+      Test Results
+    </div>
+    <!-- <div class="mr-6 hover:text-white cursor-pointer">Console</div>
+    <div class="hover:text-white cursor-pointer">Output</div> -->
+  </div>
+  <div *ngIf="isRunning" class="text-center text-sm text-gray-400 py-4">
+  Running your code... Please wait.
+  </div>
+
+  <div *ngIf="!isRunning" >
+    <!-- Summary -->
+    <!-- Summary (only show when not running) -->
+<div *ngIf="!isRunning" class="text-sm font-semibold mb-3 text-white text-center flex items-center justify-center gap-4">
+  <!-- Passed -->
+      <div class="flex items-center gap-1 text-green-400">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-circle-check-big">
+          <path d="M21.801 10A10 10 0 1 1 17 3.335"/>
+          <path d="m9 11 3 3L22 4"/>
+        </svg>
+        <span class ="text-white">Passed: {{ passCount }} / {{ totalCount }}</span>
+      </div>
+
+      <!-- Failed -->
+      <div class="flex items-center gap-1 text-red-400">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-circle-x">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="m15 9-6 6"/>
+          <path d="m9 9 6 6"/>
+        </svg>
+        <span class ="text-white">Failed: {{ totalCount - passCount }}</span>
+      </div>
+    </div>
+
+
+    <!-- Add this block under Input/Expected -->
+      <div *ngIf="errorMessage != '' || errorMessage" class="p-3 text-red-400 text-sm font-semibold bg-[#2c1a1a] mt-3 border-t border-red-700">
+        ⚠️ {{ errorMessage }}
+      </div>
+
+  <!-- Test Case Cards -->
+  <div class="space-y-3">
+    <div
+      *ngFor="let result of testResults"
+      class="rounded-md border"
+      [ngClass]="{
+        'border-[#1aa37a] bg-[#13242c]': result.pass,
+        'border-red-600 bg-[#2c1a1a]': !result.pass
+      }"
+    >
+      <!-- Header -->
+      <div class="flex justify-between items-center px-4 py-3">
+        <div class="flex items-center gap-2 font-semibold text-white">
+          <span *ngIf="result.pass" class="text-green-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-check-big-icon lucide-circle-check-big"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>
+          </span>
+          <span *ngIf="!result.pass" class="text-red-400">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x-icon lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>
+          </span>
+          <span [ngClass]="result.pass ? 'text-green-400' : 'text-red-400'">
+          </span>
+          {{ result.isSample ? 'Test Case ' + result.id : 'Hidden Test Case' }}
+        </div>
+        <span
+          class="text-xs font-semibold px-2 py-1 rounded-full"
+          [ngClass]="{
+            'bg-[#0f766e] text-white': result.pass,
+            'bg-red-600 text-white': !result.pass
+          }"
+        >
+          {{ result.pass ? 'PASSED' : 'FAILED' }}
+        </span>
+      </div>
+
+      <!-- Input/Expected (for Sample Cases only) -->
+      <div
+        *ngIf="result.isSample"
+        class="grid grid-cols-2 border-t border-gray-700 text-sm bg-[#0e1521]"
+      >
+        <div class="p-3 text-gray-300">
+          <div class="font-semibold text-gray-400 mb-1">Input</div>
+          <code class="font-mono">{{ result.sampleInput }}</code>
+        </div>
+        <div class="p-3 text-gray-300">
+          <div class="font-semibold text-gray-400 mb-1">Expected Output</div>
+          <code class="font-mono">{{ result.expected }}</code>
+        </div>
+      </div>
+      <div *ngIf="result.isSample" class="p-3 text-gray-300 bg-[#0e1521]">
+          <div class="font-semibold text-gray-400 mb-1">Actual Output</div>
+          <code class="font-mono">{{ result.actual }}</code>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

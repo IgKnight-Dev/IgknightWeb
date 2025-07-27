@@ -1,0 +1,97 @@
+<div class="bg-white shadow-md rounded-2xl overflow-hidden max-w-5xl ml-14">
+  <!-- Header -->
+  <div class="bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-4">
+    <h2 class="text-lg md:text-xl font-semibold text-gray-800 flex items-center gap-2">
+      <span class="text-blue-500 text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open-text-icon lucide-book-open-text"><path d="M12 7v14"/><path d="M16 12h2"/><path d="M16 8h2"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/><path d="M6 12h2"/><path d="M6 8h2"/></svg></span>
+      Create New Course
+    </h2>
+    <p class="text-sm text-gray-500 mt-1">Set up a new course with basic information</p>
+  </div>
+
+  <!-- Form -->
+  <div class="px-4 py-4 space-y-6">
+    <div class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+            <!-- Title -->
+            <div>
+                <label class="text-sm font-medium text-gray-700">Course Title *</label>
+                <input
+                type="text"
+                placeholder="Enter course title"
+                class="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
+                />
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label class="text-sm font-medium text-gray-700">Category *</label>
+          <select
+            class="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
+          >
+            <option selected disabled>Select category</option>
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>JavaScript</option>
+            <option>TypeScript</option>
+          </select>
+            </div>
+        </div>
+        <!-- Description -->
+        <div>
+            <label class="text-sm font-medium text-gray-700">Course Description *</label>
+                <textarea
+                rows="3"
+                placeholder="Describe what students will learn in this course..."
+                class="w-full h-24 mt-1 px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm resize-none"
+                ></textarea>
+        </div>
+      <!-- Row: Track + Level -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="text-sm font-medium text-gray-700">Track</label>
+          <select
+            class="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
+          >
+            <option selected disabled>Select track</option>
+            <option>HTML</option>
+            <option>CSS</option>
+            <option>JavaScript</option>
+            <option>TypeScript</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="text-sm font-medium text-gray-700">Level</label>
+          <select
+            class="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
+          >
+            <option selected disabled>Select level</option>
+            <option>Beginner</option>
+            <option>Intermediate</option>
+            <option>Expert</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex flex-wrap gap-4 pt-2">
+      <button
+        type="submit"
+        class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-md text-sm font-semibold flex items-center gap-x-2"
+        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus">
+            <path d="M5 12h14"/><path d="M12 5v14"/>
+        </svg>
+        Create Course
+        </button>
+      <button
+        type="reset"
+        class="border border-gray-300 hover:bg-gray-100 text-gray-700 px-6 py-2 rounded-md text-sm font-medium"
+      >
+        Clear Form
+      </button>
+    </div>
+  </div>
+</div>

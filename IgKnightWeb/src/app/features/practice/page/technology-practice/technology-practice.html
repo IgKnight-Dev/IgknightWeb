@@ -1,0 +1,19 @@
+<div class="min-h-screen bg-gray-900 text-white p-6">
+  <div class="max-w-6xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">🧠 Practice by Technology</h1>
+    <p class="mb-10 text-gray-300">Choose your favorite tech and explore available practice sets.</p>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div
+        *ngFor="let tech of technologies"
+        class="bg-gray-800 rounded-2xl p-5 hover:bg-gray-700 transition cursor-pointer"
+        (click)="goToAssignments(tech.slug)">
+        <div class="flex items-center justify-between mb-3">
+          <h2 class="text-xl font-semibold">{{ tech.name }}</h2>
+          <i [class]="tech.icon + ' text-orange-500 text-2xl'"></i>
+        </div>
+        <p class="text-sm text-gray-400">{{ tech.desc }}</p>
+      </div>
+    </div>
+  </div>
+</div>

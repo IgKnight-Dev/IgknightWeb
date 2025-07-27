@@ -1,0 +1,129 @@
+<!-- features/practice/pages/practice-home/practice-home.component.html -->
+<div class="text-center space-y-6">
+  <!-- Top badge -->
+  <div class="inline-block px-4 py-1 rounded-full bg-orange-100 text-orange-700 font-medium text-sm">
+    <span>🔥 Start Your Learning Journey</span>
+  </div>
+
+  <!-- Main heading -->
+  <h1 class="text-4xl sm:text-5xl font-extrabold text-white">
+    Master Your Skills with <br />
+    <span class="text-orange-500">Interactive Practice</span>
+  </h1>
+
+  <!-- Subheading -->
+  <p class="text-gray-400 max-w-3xl mx-auto text-lg">
+    Choose from hundreds of carefully crafted questions, coding challenges, and interview preparation materials across multiple technologies.
+  </p>
+
+  <!-- CTA -->
+  <a
+    routerLink="/challenge"
+    class="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-lg text-lg font-semibold transition"
+  >
+    Start Practicing →
+  </a>
+</div>
+
+<!-- Choose your path section -->
+<div class=" max-w-7xl mx-auto mt-16">
+  <h2 class="text-2xl font-bold text-center mb-8">Choose Your Path</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Interactive Quizzes -->
+    <a
+      routerLink="/practice/assignments"
+      class="bg-gray-900 hover:bg-gray-800 rounded-xl p-6 transition text-left border border-gray-800"
+    >
+      <div class="mb-3">
+        <div class="border border-blue-400 rounded-lg p-2 inline-block text-blue-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-brain">
+            <path d="M12 18V5" />
+            <path d="M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4" />
+            <path d="M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5" />
+            <path d="M17.997 5.125a4 4 0 0 1 2.526 5.77" />
+            <path d="M18 18a4 4 0 0 0 2-7.464" />
+            <path d="M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517" />
+            <path d="M6 18a4 4 0 0 1-2-7.464" />
+            <path d="M6.003 5.125a4 4 0 0 0-2.526 5.77" />
+          </svg>
+        </div>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">Interactive Quizzes</h3>
+      <p class="text-gray-400 text-sm mb-2">Test your knowledge with carefully crafted questions</p>
+      <p class="text-green-400 text-xs">✅ Multiple choice questions</p>
+    </a>
+
+    <!-- Coding Challenges -->
+    <a
+      routerLink="/challenge"
+      class="bg-gray-900 hover:bg-gray-800 rounded-xl p-6 transition text-left border border-gray-800"
+    >
+      <div class="mb-3">
+        <div class="border border-green-400 rounded-lg p-2 inline-block text-green-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-code">
+            <path d="m16 18 6-6-6-6" />
+            <path d="m8 6-6 6 6 6" />
+          </svg>
+        </div>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">Coding Challenges</h3>
+      <p class="text-gray-400 text-sm mb-2">Practice with real-world coding problems</p>
+      <p class="text-green-400 text-xs">✅ Algorithm practice</p>
+    </a>
+
+    <!-- Interview Preparation -->
+    <a
+      routerLink="/practice/interview-prep"
+      class="bg-gray-900 hover:bg-gray-800 rounded-xl p-6 transition text-left border border-gray-800"
+    >
+      <div class="mb-3">
+        <div class="border border-purple-400 rounded-lg p-2 inline-block text-purple-400">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-trophy">
+            <path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978" />
+            <path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978" />
+            <path d="M18 9h1.5a1 1 0 0 0 0-5H18" />
+            <path d="M4 22h16" />
+            <path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z" />
+            <path d="M6 9H4.5a1 1 0 0 1 0-5H6" />
+          </svg>
+        </div>
+      </div>
+      <h3 class="text-lg font-semibold mb-1">Interview Preparation</h3>
+      <p class="text-gray-400 text-sm mb-2">Get ready for technical interviews</p>
+      <p class="text-green-400 text-xs">✅ Common questions</p>
+    </a>
+
+</div>
+<div class="mt-20">
+  <app-popular-practice></app-popular-practice>
+</div>
+
+<!-- Ready to Level Up Card -->
+<div class="max-w-7xl mx-auto bg-gradient-to-r from-red-500 to-orange-500 rounded-2xl p-10 mt-24 text-center border border-orange-600 shadow-lg transition-all duration-300">
+  <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+    Ready to Level Up?
+  </h2>
+  <p class="text-white/90 text-lg mb-6">
+    Start challenging yourself with real-world coding problems and interactive quizzes tailored for your success.
+  </p>
+  <a
+    routerLink="/practice/assignments"
+    class="inline-block bg-white text-orange-600 hover:bg-orange-100 px-6 py-3 rounded-xl font-semibold transition"
+  >
+    Explore Practice Sets →
+  </a>
+</div>
+
+<!-- Footer Section -->
+<footer class="mt-24 text-center text-sm text-gray-500 py-6 border-t border-gray-800">
+  <p>
+    © 2025 IgKnight Practice • Crafted with ❤️ to help you master tech.
+  </p>
+</footer>

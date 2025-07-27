@@ -1,0 +1,74 @@
+<ng-container *ngIf="challenge && challenge.metaData; else noQuestion">
+    <!-- Title + Difficulty -->
+    <div class="flex items-center justify-between">
+      <h2 class="text-2xl font-semibold">{{ challenge.metaData.title }}</h2>
+      <span class="px-3 py-1 text-sm rounded-full font-medium"
+            [ngClass]="difficultyMap[challenge.difficulty].class">
+        {{ difficultyLevels[challenge.difficulty] }}
+      </span>
+    </div>
+
+  <!-- Tab Buttons -->
+  <div class="grid mt-4 grid-cols-4 bg-[#131c2b] rounded-xl px-4 mb-5">
+    <button
+      *ngFor="let tab of tabs"
+      (click)="activeTab = tab"
+      [ngClass]="{
+        'bg-[#2b2d31] text-white': activeTab === tab,
+        'text-gray-400 hover:text-white': activeTab !== tab
+      }"
+      class="py-1 mt-1 mb-1 text-sm rounded-lg transition font-medium">
+      {{ tab }}
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="space-y-8 text-white text-sm">
+
+    <!-- Meta -->
+    <div class="flex gap-4 text-xs text-gray-300">
+      <div class="bg-gray-800 px-3 py-1 rounded-full">📂 Category: {{ challenge.category }}</div>
+      <div class="bg-gray-800 px-3 py-1 rounded-full">📈 Acceptance: {{ challenge.metaData.acceptance }}%</div>
+      <div class="bg-gray-800 px-3 py-1 rounded-full">👍 Likes: {{ challenge.metaData.likes }}</div>
+    </div>
+
+    <!-- 📝 Description -->
+    <div *ngIf="activeTab === 'Description'">
+      <h3 class="text-base font-semibold mb-2">📝 Description</h3>
+      <p class="text-gray-300 whitespace-pre-line">{{ challenge.metaData.description }}</p>
+
+      <div *ngIf="challenge.metaData.constraints">
+        <h3 class="text-base font-semibold mt-6 mb-2">📏 Constraints</h3>
+        <p class="text-gray-300 whitespace-pre-line">{{ challenge.metaData.constraints }}</p>
+      </div>
+    </div>
+
+    <!-- 📌 Example -->
+    <div *ngIf="activeTab === 'Examples' && sampleTestCase[0]?.input && sampleTestCase[0]?.expectedOutput">
+      <h3 class="text-base font-semibold mb-2">📌 Example</h3>
+      <div class="bg-[#1e1e2e] p-4 rounded-md text-gray-200 text-sm leading-relaxed space-y-1">
+        <div><span class="text-cyan-400">Input:</span> {{ sampleTestCase[0].input }}</div>
+        <div><span class="text-cyan-400">Output:</span> {{ sampleTestCase[0].expectedOutput }}</div>
+      </div>
+    </div>
+
+    <!-- 💡 Hints -->
+    <div *ngIf="activeTab === 'Hints' && challenge.metaData.hints?.length">
+      <h3 class="text-base font-semibold mb-2">💡 Hints</h3>
+      <ul class="list-disc pl-6 text-gray-300">
+        <li *ngFor="let hint of challenge.metaData.hints">{{ hint }}</li>
+      </ul>
+    </div>
+
+    <!-- 🧠 Solutions -->
+    <div *ngIf="activeTab === 'Solution'">
+      <h3 class="text-base font-semibold mb-2">🧠 Solution Template</h3>
+      <pre class="bg-[#1e1e2e] p-4 rounded-md overflow-x-auto text-sm text-gray-100">Not present</pre>
+    </div>
+  </div>
+</ng-container>
+
+<!-- No question fallback -->
+<ng-template #noQuestion>
+  <div class="text-red-500 font-semibold mt-8 text-center text-lg">❌ No question found</div>
+</ng-template>

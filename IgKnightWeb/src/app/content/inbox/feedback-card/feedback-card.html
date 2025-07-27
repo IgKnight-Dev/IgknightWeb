@@ -1,0 +1,28 @@
+<div
+  class="p-4 rounded-lg border cursor-pointer mb-3 transition-all"
+  [ngClass]="{
+    'bg-orange-50 border-orange-300': active,
+    'bg-gray-50 hover:bg-gray-100 border-gray-200': !active
+  }"
+>
+  <div class="flex justify-between items-center">
+    <p class="font-semibold text-gray-800">{{ feedback.name }}</p>
+
+    <!-- Priority badge with inline ngClass -->
+    <span
+      class="text-xs px-2 py-0.5 rounded-full"
+      [ngClass]="{
+        'bg-red-100 text-red-600': feedback.priority === 'high',
+        'bg-yellow-100 text-yellow-700': feedback.priority === 'medium',
+        'bg-green-100 text-green-700': feedback.priority === 'low'
+      }"
+    >
+      {{ feedback.priority }}
+    </span>
+  </div>
+
+  <p class="text-sm text-gray-800 font-medium mt-1">{{ feedback.question }}</p>
+  <p class="text-sm text-gray-500">Assignment: {{ feedback.assignment }}</p>
+  <p class="text-sm text-gray-600 mt-1 line-clamp-2">{{ feedback.message }}</p>
+  <p class="text-xs text-gray-400 mt-2 flex items-center gap-1">🕒 {{ feedback.time }}</p>
+</div>

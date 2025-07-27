@@ -1,0 +1,59 @@
+<!-- Header Top Row -->
+<nav class="flex items-center justify-between bg-[#0C1424] px-5 py-2 border-b border-[#1C2538]">
+  <!-- Left: Back to Home + Branding -->
+  <div class="flex items-center space-x-4 ml-10">
+    <button class="flex items-center text-white hover:text-orange-400 transition" routerLink="/">
+     ← Back to Home
+    </button>
+
+    <div>
+      <h1 class="text-xl font-bold text-white">🎨IgKnight <span class="text-orange-400">Docs</span></h1>
+      <p class="text-sm text-gray-400">{{ description }}</p>
+    </div>
+  </div>
+
+  <!-- Right: Beginner badge -->
+  <div class="text-orange-400 border border-orange-400 px-3 py-1 rounded-full text-sm font-medium">
+    Learner
+  </div>
+</nav>
+
+<!-- Technology Tabs (2nd row, full width) -->
+<div class="flex bg-[#131C31] px-6 py-2 border-b border-[#1C2538] space-x-6 shadow-sm">
+  <app-technology-tabs></app-technology-tabs>
+</div>
+
+<!-- Main Content Area: full height, no scroll here -->
+<div class="flex bg-[#0C1424] h-[calc(100vh-7rem)] overflow-hidden">
+  <!-- Sidebar: scrollable -->
+  <app-topic-list 
+    class="w-64 border-r border-[#1C2538] overflow-y-auto overflow-x-hidden custom-scroll"
+    [technology]="selectedTechnology">
+  </app-topic-list>
+
+  <!-- Topic Content: scrollable only here -->
+  <div class="flex-1 p-6 overflow-y-auto text-white custom-scroll">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-[#0C1424] border-t border-[#1C2538] text-gray-300 px-16 py-6">
+  <div class="flex flex-wrap justify-between">
+
+    <!-- Logo & Branding -->
+    <div class="mb-2 w-full md:w-1/3">
+      <h2 class="text-2xl font-bold text-white mb-2">🎨 IgKnight <span class="text-orange-400">Docs</span></h2>
+      <p class="text-sm text-gray-400">
+        Master HTML, CSS, JS, Python, .NET and more with easy-to-follow lessons and practical code examples.
+      </p>
+    </div>
+  </div>
+  <div class="border-t border-[#1C2538] mt-4 pt-4 flex justify-between text-sm text-gray-500">
+    <p>© {{ currentYear }} IgKnight Learning Platform. All rights reserved.</p>
+    <div class="flex space-x-4">
+      <a href="#" class="hover:text-orange-400 transition">Privacy Policy</a>
+      <a href="#" class="hover:text-orange-400 transition">Terms of Service</a>
+    </div>
+  </div>
+</footer>

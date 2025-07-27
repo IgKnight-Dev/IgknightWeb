@@ -1,0 +1,187 @@
+<div class="min-h-screen relative overflow-hidden bg-black">
+  <!-- Background Layers -->
+  <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('assets/images/login-bg.png');"></div>
+  <div class="absolute inset-0 bg-black/30"></div>
+  <div class="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-transparent to-orange-900/30"></div>
+
+  <!-- ✨ Quote Section -->
+  <div class="absolute top-[68%] left-[25%] z-20 max-w-sm">
+    <div
+      class="relative backdrop-blur-sm bg-white/20 rounded-xl p-4 border border-white/30 shadow-xl overflow-hidden"
+    >
+      <blockquote class="text-base lg:text-lg font-playfair text-white leading-snug drop-shadow-xl">
+        <span class="block -ml-2">"Share the spark,</span>
+        <span class="block text-amber-200 pl-3">spread the knowledge"</span>
+      </blockquote>
+      <div class="mt-4 flex items-center space-x-2">
+        <div class="flex-1 h-0.5 bg-gradient-to-r from-amber-400 via-orange-500 to-red-500 rounded-full"></div>
+        <div class="w-2 h-2 bg-amber-400 rounded-full"></div>
+        <div class="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+        <div class="w-1 h-1 bg-red-500 rounded-full"></div>
+      </div>
+      <div class="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-transparent to-orange-900/30 rounded-xl pointer-events-none"></div>
+    </div>
+  </div>
+
+  <!-- Signup Card -->
+  <div class="relative z-10 min-h-screen flex flex-col justify-center items-center px-6 sm:px-10 lg:flex-row lg:justify-end lg:pr-20">
+    <div class="w-full max-w-[19rem] sm:max-w-[20rem] lg:max-w-[22rem]">
+      <!-- 🔥 Logo & Title -->
+      <div class="text-center mt-0 mb-4">
+        <a routerLink="/" class="inline-flex items-center space-x-3 group">
+          <div class="w-14 h-14 bg-gradient-to-r from-orange-500 to-red-600 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform shadow-xl">
+            <span class="text-white font-extrabold text-3xl select-none">🔥</span>
+          </div>
+          <span class="text-4xl font-extrabold text-white drop-shadow-lg tracking-tight select-none">IGKNIGHT</span>
+        </a>
+      </div>
+
+      <!-- Form -->
+      <div class="bg-white/90 backdrop-blur-md rounded-lg shadow-xl ring-1 ring-white/20 px-4 py-3 overflow-auto">
+        <div class="text-center">
+          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 mb-1">Create Your Account</h2>
+          <p class="text-slate-700 text-sm sm:text-base font-medium mb-2">Join the magical library of knowledge</p>
+        </div>
+        <form #signUpForm="ngForm" (ngSubmit)="onSignup(signUpForm)" class="space-y-2" novalidate autocomplete="off">
+
+          <!-- Full Name -->
+          <div>
+            <label class="block text-xs font-medium text-slate-800 mb-1" for="fullName">Full Name</label>
+            <input id="fullName" name="fullName" [(ngModel)]="fullName" required minlength="3" #fullNameRef="ngModel"
+              class="w-full h-8 px-2 rounded-md border border-amber-300 text-xs" placeholder="Your name" autocomplete="off" />
+            <div *ngIf="fullNameRef.invalid && fullNameRef.touched" class="text-xs text-red-600">
+              <div *ngIf="fullNameRef.errors?.['required']">Name is required.</div>
+              <div *ngIf="fullNameRef.errors?.['minlength']">Minimum 3 characters.</div>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label class="block text-xs font-medium text-slate-800 mb-1" for="email">Email</label>
+            <input id="email" name="email" type="email" [(ngModel)]="email" required email #emailRef="ngModel"
+              class="w-full h-8 px-2 rounded-md border border-amber-300 text-xs" placeholder="you@example.com" autocomplete="off" />
+            <div *ngIf="emailRef.invalid && emailRef.touched" class="text-xs text-red-600">
+              <div *ngIf="emailRef.errors?.['required']">Email is required.</div>
+              <div *ngIf="emailRef.errors?.['email']">Enter a valid email.</div>
+            </div>
+            <div class="mt-1 flex justify-between items-center">
+              <button type="button" class="text-xs text-orange-600 font-semibold" (click)="onSendOtp()"
+                [disabled]="emailRef.invalid || isSendingOtp">
+                {{ isOtpSent ? 'Resend OTP' : 'Send OTP' }}
+              </button>
+              <span *ngIf="otpSentMessage" class="text-xs text-green-600">{{ otpSentMessage }}</span>
+            </div>
+          </div>
+
+          <!-- OTP -->
+          <div *ngIf="isOtpSent">
+            <label class="block text-xs font-medium text-slate-800 mb-1" for="otp">OTP</label>
+            <input id="otp" name="otp" [(ngModel)]="otp" required minlength="4" maxlength="6" #otpRef="ngModel"
+              class="w-full h-8 px-2 rounded-md border border-amber-300 text-xs" placeholder="Enter OTP" autocomplete="off" />
+            <button type="button" (click)="onVerifyOtp()" [disabled]="otpRef.invalid || isVerifyingOtp"
+              class="mt-1 w-full h-8 bg-gradient-to-r from-orange-600 to-red-600 rounded-md text-white font-semibold text-xs"
+              aria-label="Verify OTP">
+              {{ isVerifyingOtp ? 'Verifying...' : 'Verify OTP' }}
+            </button>
+            <div *ngIf="otpVerifyMessage"
+              [class.text-green-600]="isOtpVerified"
+              [class.text-red-600]="!isOtpVerified"
+              class="text-xs mt-1">
+              {{ otpVerifyMessage }}
+            </div>
+          </div>
+
+          <!-- CAPTCHA -->
+          <div>
+            <label class="block text-xs font-medium text-slate-800 mb-1" for="captcha">CAPTCHA</label>
+            <div class="flex items-center space-x-2">
+              <img [src]="captchaImageUrl" alt="CAPTCHA" class="h-8 border border-amber-400 rounded" />
+              <button type="button" (click)="loadCaptcha()" class="text-xs text-orange-600 font-semibold" aria-label="Refresh CAPTCHA">Refresh</button>
+            </div>
+            <input id="captcha" name="captcha" [(ngModel)]="captchaInput" required #captchaRef="ngModel"
+              class="w-full h-8 px-2 mt-1 rounded-md border border-amber-300 text-xs" placeholder="Enter CAPTCHA" autocomplete="off" />
+            <div *ngIf="captchaRef.invalid && captchaRef.touched" class="text-xs text-red-600">CAPTCHA is required.</div>
+          </div>
+
+          <!-- Password -->
+          <div>
+            <label class="block text-xs font-medium text-slate-800 mb-1" for="password">Password</label>
+            <div class="relative">
+              <input id="password" name="password" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password"
+                required minlength="6" #passwordRef="ngModel"
+                class="w-full h-8 px-2 pr-8 rounded-md border border-amber-300 text-xs"
+                placeholder="Create a password" autocomplete="new-password" />
+              <button
+                type="button"
+                (click)="showPassword = !showPassword"
+                class="absolute inset-y-0 right-2 flex items-center text-lg pr-1 text-slate-700 hover:text-orange-600"
+                tabindex="-1"
+                aria-label="Toggle password visibility">
+              <ng-container *ngIf="showPassword; else eyeIcon">
+                  <!-- eye-off icon (password is visible) -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+                </ng-container>
+
+                <ng-template #eyeIcon>
+                  <!-- eye icon (password is hidden) -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                </ng-template>
+                </button>
+            </div>
+          </div>
+
+          <!-- Confirm Password -->
+          <div>
+            <label class="block text-xs font-medium text-slate-800 mb-1" for="confirm">Confirm Password</label>
+            <div class="relative">
+              <input id="confirm" name="confirm" [type]="showConfirmPassword ? 'text' : 'password'" [(ngModel)]="confirm"
+                required #confirmRef="ngModel"
+                class="w-full h-8 px-2 pr-8 rounded-md border border-amber-300 text-xs"
+                placeholder="Repeat password" autocomplete="new-password" />
+              <button
+                type="button"
+                (click)="showConfirmPassword = !showConfirmPassword"
+                class="absolute inset-y-0 right-2 flex items-center text-lg pr-1 text-slate-700 hover:text-orange-600"
+                tabindex="-1"
+                aria-label="Toggle confirm password visibility">
+                <ng-container *ngIf="showConfirmPassword; else eyeIcon">
+                  <!-- eye-off icon (password is visible) -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-off-icon lucide-eye-off"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></svg>
+                </ng-container>
+
+                <ng-template #eyeIcon>
+                  <!-- eye icon (password is hidden) -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye-icon lucide-eye"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg>
+                </ng-template>
+                </button>
+            </div>
+            <div *ngIf="password !== confirm && confirmRef.touched" class="text-xs text-red-600">Passwords do not match.</div>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit"
+            class="w-full h-8 bg-gradient-to-r from-orange-600 to-red-600 rounded-md text-white font-semibold text-xs disabled:opacity-50"
+            [disabled]="signUpForm.invalid || password !== confirm || !isOtpVerified || email !== originalEmail || captchaRef.invalid">
+            Create Account
+          </button>
+
+          <!-- Feedback Why Disabled -->
+          <div *ngIf="signUpForm.invalid || password !== confirm || !isOtpVerified || captchaRef.invalid"
+               class="text-xs text-red-600 mt-1 space-y-1">
+            <div *ngIf="signUpForm.invalid">Please fill all required fields correctly.</div>
+            <div *ngIf="password !== confirm">Passwords do not match.</div>
+            <div *ngIf="!isOtpVerified">Please verify your OTP.</div>
+            <div *ngIf="captchaRef.invalid && captchaRef.touched">CAPTCHA is required.</div>
+          </div>
+
+        </form>
+
+        <!-- Footer -->
+        <div class="text-center text-xs text-slate-700 mt-2">
+          Already have an account?
+          <a routerLink="/login" class="text-orange-600 font-semibold">Log in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

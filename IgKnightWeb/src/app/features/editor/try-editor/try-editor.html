@@ -1,0 +1,129 @@
+<div class="min-h-screen bg-[#0F172A] text-white flex flex-col">
+
+  <!-- Header -->
+  <div class="flex justify-between items-center p-4 border-b border-gray-700">
+    <div class="flex items-center gap-3 ml-28">
+      <button class="text-white hover:text-orange-400 mr-3" routerLink="/documentation">&larr; Back to Home</button>
+      <div class="flex items-center">
+        <div class="text-3xl">⚡</div>
+            <div>
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+                IGKNIGHT
+                </h1>
+                <p class="text-xs text-slate-400">Code Editor</p>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center gap-2">
+      🌙 Dark Mode
+    </div>
+  </div>
+
+  <!-- Title -->
+  <div class="text-center py-6">
+    <h1 class="text-3xl font-bold">Try Out Your Code in Real-Time</h1>
+    <p class="text-gray-400 mt-2">Write HTML, CSS, or JavaScript and see the result instantly!</p>
+  </div>
+
+  <!-- Toolbar -->
+  <div class="flex justify-between items-center bg-[#1E293B] p-4 mx-8 rounded-lg mb-4 shadow-lg">
+
+    <!-- Add Icon/Label at left for balance -->
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-gradient-to-r from-orange-400 to-orange-600 rounded-lg flex items-center justify-center">
+        ⚙️
+      </div>
+      <span class="font-semibold text-lg text-slate-300">Code Control Panel</span>
+    </div>
+
+    <div class="flex gap-3">
+      <label class="flex items-center gap-2 ml-6">
+        <input type="checkbox" [(ngModel)]="autoRun" class="accent-orange-500">
+        Auto Run
+      </label>
+      <button (click)="runCode()" class="bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600">
+        ▶️ Run
+      </button>
+      <button (click)="clearCode()" class="bg-red-500 px-4 py-2 rounded-lg hover:bg-red-600">
+        🗑️ Clear
+      </button>
+      <button (click)="saveCode()" class="bg-orange-500 px-4 py-2 rounded-lg hover:bg-orange-600">
+        💾 Save
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex flex-1 gap-4 px-8 pb-6 overflow-hidden">
+
+    <!-- Left Block: Editors -->
+    <div class="w-1/2 bg-[#1E293B] p-4 rounded-lg flex flex-col gap-4 overflow-auto custom-scroll shadow-lg">
+
+      <!-- Header with LIVE indicator -->
+      <div class="flex justify-between items-center mb-2">
+        <h3 class="text-lg font-semibold flex items-center gap-3">
+          <div class="w-8 h-8 bg-gradient-to-r from-purple-500 to-purple-600 rounded-lg flex items-center justify-center">
+            🧠
+          </div>
+          Code Editor Area
+        </h3>
+        <span class="bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full">🔴 LIVE</span>
+      </div>
+
+      <!-- HTML Editor -->
+      <div>
+        <h4 class="text-orange-400 font-semibold mb-2">HTML Editor</h4>
+        <textarea
+          [(ngModel)]="htmlCode"
+          (ngModelChange)="onCodeChange()"
+          class="w-full h-40 p-2 bg-[#111827] text-green-400 rounded-lg resize-none custom-scroll"
+        ></textarea>
+      </div>
+
+      <!-- CSS Editor -->
+      <div>
+        <h4 class="text-blue-400 font-semibold mb-2">CSS Editor</h4>
+        <textarea
+          [(ngModel)]="cssCode"
+          (ngModelChange)="onCodeChange()"
+          class="w-full h-40 p-2 bg-[#111827] text-blue-400 rounded-lg resize-none custom-scroll"
+        ></textarea>
+      </div>
+
+      <!-- JavaScript Editor -->
+      <div>
+        <h4 class="text-yellow-300 font-semibold mb-2">JavaScript Editor</h4>
+        <textarea
+          [(ngModel)]="jsCode"
+          (ngModelChange)="onCodeChange()"
+          class="w-full h-40 p-2 bg-[#111827] text-yellow-300 rounded-lg resize-none custom-scroll"
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- Right Block: Output & Console -->
+    <div class="w-1/2 bg-[#1E293B] p-4 rounded-lg flex flex-col gap-4 overflow-auto custom-scroll shadow-lg">
+
+      <!-- Live Preview -->
+      <div>
+        <h4 class="text-green-400 font-semibold mb-2">Live Preview</h4>
+        <iframe [srcdoc]="output" class="w-full h-80 bg-white rounded-lg"></iframe>
+      </div>
+
+      <!-- Console Output -->
+      <div>
+        <h4 class="text-purple-400 font-semibold mb-2">Console Output</h4>
+        <div class="bg-black p-2 rounded text-sm font-mono h-32 overflow-y-auto custom-scroll">
+          <pre *ngFor="let log of consoleLogs">{{ log }}</pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="text-center text-sm text-gray-400 py-4 border-t border-gray-700">
+    👣 Made with ❤️ | GitHub | Report Bug | Version 1.0.0
+  </div>
+
+</div>

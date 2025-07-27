@@ -1,0 +1,60 @@
+<div class="bg-white rounded-xl shadow-md p-6 min-h-[70vh]" *ngIf="feedback; else noSelection">
+  <h3 class="text-xl font-semibold mb-4">📋 Feedback Details</h3>
+
+  <div class="text-gray-700">
+    <p class="font-medium flex items-center gap-2">
+      👤 {{ feedback.name }}
+      <span class="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700" *ngIf="feedback.priority === 'low'">low priority</span>
+    </p>
+    <p class="text-sm text-gray-500">{{ feedback.email }}</p>
+    <p class="text-sm text-gray-600 mt-2"><strong>Assignment:</strong> {{ feedback.assignment }}</p>
+  </div>
+
+  <div class="mt-4">
+    <h4 class="font-semibold text-gray-800 mb-1">{{ feedback.question }}</h4>
+    <p class="bg-gray-100 rounded-md p-3 text-sm text-gray-700">{{ feedback.message }}</p>
+    <p class="text-xs text-gray-400 mt-1">📅 Received {{ feedback.time }}</p>
+  </div>
+
+  <div class="mt-6">
+    <label class="block mb-1 font-medium text-gray-700">Your Response</label>
+    <textarea rows="4" [(ngModel)]="response" placeholder="Type your response here..."
+      class="w-full rounded-md border border-gray-300 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500 resize-none"
+    ></textarea>
+
+    <div class="mt-3 flex gap-2">
+      <button class="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-md text-sm font-semibold">Send Reply</button>
+      <button class="border border-gray-300 hover:bg-gray-100 text-gray-700 px-4 py-2 rounded-md text-sm font-medium" (click)="response=''">Clear</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #noSelection>
+  <div class="bg-white rounded-xl shadow-md p-8 min-h-[70vh] flex items-center justify-center text-gray-400">
+    <div class="flex flex-col items-center text-center space-y-4">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-message-square-more text-orange-500"
+      >
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        <path d="M8 10h.01" />
+        <path d="M12 10h.01" />
+        <path d="M16 10h.01" />
+      </svg>
+
+      <h3 class="text-xl font-semibold text-gray-700">No Request Selected</h3>
+      <p class="text-gray-500 max-w-md">
+        Choose a feedback request from the list on the left to view its details and respond to the student.
+      </p>
+    </div>
+  </div>
+</ng-template>
+

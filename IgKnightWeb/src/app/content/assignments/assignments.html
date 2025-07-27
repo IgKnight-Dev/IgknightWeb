@@ -1,0 +1,58 @@
+  <!-- Page Title -->
+    <div class="mb-6 ml-20">
+      <h1 class="text-2xl font-bold text-[#121212] mb-2">Assignment Management</h1>
+      <p class="text-sm text-gray-500">Create assignments, manage questions, and control visibility.</p>
+    </div>
+
+<div class="max-w-7xl mx-auto px-6 py-8">
+<!-- Tabs -->
+<div class="ml-14 flex items-center justify-between">
+  <div class="grid w-full max-w-md grid-cols-3 bg-gray-200 p-1 rounded-lg">
+    <button
+      (click)="selectedTab = 'create'"
+      [ngClass]="{
+        'bg-white shadow-sm text-black': selectedTab === 'create',
+        'text-gray-500 hover:text-gray-700': selectedTab !== 'create'
+      }"
+      class="flex items-center justify-center gap-2 py-2 px-4 text-sm font-medium rounded-md transition"
+    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus-icon lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+      Create
+    </button>
+
+    <button
+      (click)="selectedTab = 'questions'"
+      [ngClass]="{
+        'bg-white shadow-sm text-black': selectedTab === 'questions',
+        'text-gray-500 hover:text-gray-700': selectedTab !== 'questions'
+      }"
+      class="flex items-center justify-center gap-2 py-2 px-4 text-sm font-medium rounded-md transition"
+    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-question-mark-icon lucide-circle-question-mark"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+      Questions
+    </button>
+
+    <button
+      (click)="selectedTab = 'manage'"
+      [ngClass]="{
+        'bg-white shadow-sm text-black': selectedTab === 'manage',
+        'text-gray-500 hover:text-gray-700': selectedTab !== 'manage'
+      }"
+      class="flex items-center justify-center gap-2 py-2 px-4 text-sm font-medium rounded-md transition"
+    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings-icon lucide-settings"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+      Manage
+    </button>
+  </div>
+</div>
+
+
+  <!-- Dynamic Section Display Based on Selected Tab -->
+  <div class="mt-6">
+    <ng-container [ngSwitch]="selectedTab">
+      <app-assignments-form *ngSwitchCase="'create'"></app-assignments-form>
+      <app-questions-page *ngSwitchCase="'questions'"></app-questions-page>
+      <app-assignments-list *ngSwitchCase="'manage'"></app-assignments-list>
+    </ng-container>
+  </div>
+</div>

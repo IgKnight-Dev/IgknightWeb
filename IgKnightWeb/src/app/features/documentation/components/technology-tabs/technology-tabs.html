@@ -1,0 +1,8 @@
+<nav class="flex px-6 py-2 space-x-6">
+  <a *ngFor="let tech of technologies"
+     [routerLink]="['/documentation', tech.path]"
+     routerLinkActive="text-orange-400 border-b-2 border-orange-400"
+     class="text-gray-400 hover:text-orange-300 transition font-semibold">
+    {{ tech.name }}
+  </a>
+</nav>

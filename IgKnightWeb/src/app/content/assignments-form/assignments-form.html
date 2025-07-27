@@ -1,0 +1,134 @@
+<div *ngIf="canCreateAssignment(); else noAccess">
+<div class="bg-white shadow-md rounded-2xl overflow-hidden max-w-5xl ml-14">
+  <!-- Header -->
+  <div class="bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-4">
+    <h2 class="text-lg md:text-xl font-semibold text-gray-800 flex items-center gap-2">
+      <span class="text-blue-500 text-2xl">
+        <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-book-open-check" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21V7" />
+          <path d="m16 12 2 2 4-4" />
+          <path d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3" />
+        </svg>
+      </span>
+      Create Assignment
+    </h2>
+    <p class="text-sm text-gray-500 mt-1">Fill in the assignment details below</p>
+  </div>
+
+  <!-- Form -->
+  <div class="px-4 py-4 space-y-6">
+    <form (ngSubmit)="createAssignment()" #assignmentForm="ngForm">
+      <div class="space-y-4">
+        <!-- Title -->
+        <div>
+          <label class="text-sm font-medium text-gray-700">Title</label>
+          <input
+            type="text"
+            placeholder="Enter assignment title"
+            class="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
+            [(ngModel)]="title"
+            name="title"
+            required
+          />
+        </div>
+
+        <!-- Description -->
+        <div>
+          <label class="text-sm font-medium text-gray-700">Description</label>
+          <textarea
+            rows="3"
+            placeholder="Enter assignment description"
+            class="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm resize-none"
+            [(ngModel)]="description"
+            name="description"
+          ></textarea>
+        </div>
+
+        <!-- Track and Level -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="text-sm font-medium text-gray-700">Track</label>
+            <select
+              class="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
+              [(ngModel)]="defaultTrack"
+              name="track"
+              required
+            >
+              <option disabled [ngValue]="null">Select track</option>
+              <option *ngFor="let tech of technologies" [ngValue]="tech">
+                {{ tech }}
+              </option>
+            </select>
+          </div>
+
+          <div>
+            <label class="text-sm font-medium text-gray-700">Level</label>
+            <select
+              class="w-full mt-1 px-4 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-orange-500 focus:outline-none text-sm"
+              [(ngModel)]="defaultLevel"
+              name="level"
+              required
+            >
+              <option disabled [ngValue]="null">Select level</option>
+              <option *ngFor="let key of difficultyLevels" [ngValue]="key">
+                {{ key }}
+              </option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="flex flex-wrap gap-4 pt-4">
+        <button
+          type="submit"
+          [disabled]="loading"
+          class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-md text-sm font-semibold flex items-center gap-x-2"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="lucide lucide-plus" width="16" height="16" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14" />
+            <path d="M12 5v14" />
+          </svg>
+          Create Assignment
+        </button>
+
+        <button
+          type="button"
+          (click)="clearForm()"
+          class="border border-gray-300 hover:bg-gray-100 text-gray-700 px-6 py-2 rounded-md text-sm font-medium"
+        >
+          Clear Form
+        </button>
+      </div>
+
+      <!-- Success/Error Messages -->
+      <div *ngIf="successMessage" class="text-green-600 mt-4 text-sm">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage" class="text-red-600 mt-4 text-sm">
+        {{ errorMessage }}
+      </div>
+    </form>
+  </div>
+</div>
+</div>
+
+<ng-template #noAccess>
+  <div class="flex items-center justify-center ml-14 max-w-5xl">
+    <div class="flex flex-col items-center bg-white border-2 border-red-500 text-red-700 p-8 rounded-xl shadow-lg max-w-xl w-full animate-fade-in">
+      <div class="flex items-center gap-2 mb-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.29 3.86L1.82 18a1 1 0 00.86 1.5h18.64a1 1 0 00.86-1.5L13.71 3.86a1 1 0 00-1.72 0zM12 9v4m0 4h.01" />
+        </svg>
+        <h2 class="text-xl font-semibold">Access Denied</h2>
+      </div>
+      <p class="text-sm text-center mb-3 px-4">
+        You do not have permission to create asignments.<br />
+        If you believe this is an error, please contact your administrator.
+      </p>
+    </div>
+  </div>
+</ng-template>

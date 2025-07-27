@@ -1,0 +1,41 @@
+<div
+  class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 border border-white/10 rounded-2xl bg-white/5 shadow-md"
+  [ngClass]="{
+    'md:flex-row-reverse': imagePosition === 'right',
+    'md:flex-row': imagePosition === 'left'
+  }"
+>
+  <!-- Text Content -->
+  <div class="flex-1 space-y-4">
+    <div class="flex items-center gap-2 text-orange-500 font-semibold">
+      <div>
+        <h3 class="text-white text-lg font-bold leading-tight">
+          {{ name }}
+        </h3>
+        <p class="text-sm text-white/70">{{ title }}</p>
+      </div>
+    </div>
+
+    <p class="text-white/80 text-sm leading-relaxed">
+      {{ quote }}
+    </p>
+
+    <ul class="list-disc pl-5 text-white/60 text-sm space-y-1">
+      <li *ngFor="let point of points">{{ point }}</li>
+    </ul>
+
+    <button (click)="startYourJourney()" class="mt-2 bg-orange-500 text-white text-sm px-4 py-1.5 rounded hover:bg-orange-600 transition">
+      Start Your Journey →
+    </button>
+  </div>
+
+  <!-- Image Section Placeholder (Card Style) -->
+  <div
+    class="w-full md:w-72 h-44 rounded-xl bg-gradient-to-br from-orange-700/40 to-purple-900/30 flex items-center justify-center text-center text-white border border-orange-500/30"
+  >
+    <div>
+      <span class="block text-lg font-bold">{{ name }}</span>
+      <span class="text-xs text-white/60">{{ title }}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="relative min-h-screen bg-white text-gray-900">
+  <!-- 🔒 Disable interaction overlay -->
+ <div
+  *ngIf="isPageDisabled"
+  class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center pointer-events-auto"
+>
+  <div class="bg-gray-900 text-white px-8 py-5 rounded-xl shadow-2xl text-base sm:text-lg font-medium flex items-center gap-4 max-w-2xl text-center">
+    <svg
+      class="animate-spin h-6 w-6 text-orange-400 drop-shadow"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        class="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        stroke-width="4"
+      />
+      <path
+        class="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+      />
+    </svg>
+    <span>
+      This section is currently under development. Meanwhile, feel free to explore other features or check back soon.  
+      <a
+        routerLink="/admin-panel/dashboard"
+        class="block text-orange-400 mt-2 underline hover:text-orange-500 transition"
+      >
+        ← Back to Dashboard
+      </a>
+    </span>
+  </div>
+</div>
+
+
+  <!-- Actual Page Content -->
+  <div class="max-w-7xl mx-auto px-6 space-y-6" [class.pointer-events-none]="isPageDisabled">
+    <!-- Header and Toggle Button -->
+    <div class="flex ml-14 flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900">Courses Management</h1>
+        <p class="text-sm text-gray-500">Create and manage courses with topics</p>
+      </div>
+      <button
+        (click)="showCourses = !showCourses"
+        class="text-sm font-medium mr-40 px-4 py-2 bg-orange-600 text-white rounded-md hover:bg-orange-700 transition"
+      >
+        {{ showCourses ? 'Hide Assignments' : 'Show Assignments' }}
+      </button>
+    </div>
+
+    <!-- Assignments List -->
+    <div *ngIf="showCourses" class="py-3">
+      <app-view-courses></app-view-courses>
+    </div>
+
+    <!-- Assignments Form -->
+    <div class="py-6">
+      <app-add-course></app-add-course>
+    </div>
+  </div>
+</div>
