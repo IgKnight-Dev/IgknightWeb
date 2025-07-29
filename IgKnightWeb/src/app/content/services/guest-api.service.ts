@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../core/services/apiservice';
 import { AssignmentQuestionDto } from '../../models/assignment-question.model';
-import { environment } from '../../../environment';
+import { environment } from '../../../environments/environment';
 import { AssignmentAnswerDto, AssignmentAttemptResultDto } from '../../models/assignment-attempt-result.dto';
 import { AssignmentDto, AssignmentsOverviewDataDto } from '../../models/assignment.model';
 

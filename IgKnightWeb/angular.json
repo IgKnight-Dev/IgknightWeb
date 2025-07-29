@@ -30,20 +30,33 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "loader": {
+              ".ttf": "file"
+            },
             "assets": [
-                    {
-                      "glob": "**/*",
-                      "input": "public",
-                      "output": "/assets"
-                    },
-                    {
-                      "glob": "**/*",
-                      "input": "node_modules/monaco-editor/min",
-                      "output": "assets/monaco/min"
-                    },
-                    "src/favicon.ico",
-                    "src/assets"
-                  ],
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min",
+                "output": "assets/monaco/min"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon",
+                "output": "assets/codicon"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon.ttf",
+                "output": "assets/codicon"
+              },
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"
@@ -51,6 +64,7 @@
           },
           "configurations": {
             "production": {
+              "baseHref": "/IgknightWeb/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -107,19 +121,29 @@
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-                    {
-                      "glob": "**/*",
-                      "input": "public",
-                      "output": "/assets"
-                    },
-                    {
-                      "glob": "**/*",
-                      "input": "node_modules/monaco-editor/min",
-                      "output": "assets/monaco/min"
-                    },
-                    "src/favicon.ico",
-                    "src/assets"
-                  ],
+              {
+                "glob": "**/*",
+                "input": "public",
+                "output": "/assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/min",
+                "output": "assets/monaco/min"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon",
+                "output": "assets/codicon"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/monaco-editor/esm/vs/base/browser/ui/codicons/codicon/codicon.ttf",
+                "output": "assets/codicon"
+              },
+              "src/favicon.ico",
+              "src/assets"
+            ],
             "styles": [
               "node_modules/ngx-toastr/toastr.css",
               "src/styles.scss"

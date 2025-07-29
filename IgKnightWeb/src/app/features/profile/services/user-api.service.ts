@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../core/services/apiservice';
 import { UserDto } from '../../../models/UserDto ';
-import { environment } from '../../../../environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class UserApiService {

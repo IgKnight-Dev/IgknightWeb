@@ -6,7 +6,7 @@ import { CaptchaResponse } from '../../../models/CaptchaResponse ';
 import { RecipientType } from '../../../models/Enums';
 import { HttpParams } from '@angular/common/http';
 import { firstValueFrom, Observable } from 'rxjs';
-import { environment } from '../../../../environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class OtpApiService {

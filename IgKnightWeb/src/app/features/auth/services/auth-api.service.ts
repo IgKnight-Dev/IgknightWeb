@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from '../../../core/services/apiservice';
 import { LoginRequest } from '../../../models/LoginRequest';
 import { UserRegister } from '../../../models/UserRegister';
-import { environment } from '../../../../environment';
+import { environment } from '../../../../environments/environment';
 
 interface LoginResponse {
   accessToken: string;

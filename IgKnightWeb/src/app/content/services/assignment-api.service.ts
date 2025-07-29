@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AssignmentDto, AssignmentsOverviewDataDto, CreateAssignmentDto, UpdateAssignmentDto } from '../../models/assignment.model';
 import { ApiService } from '../../core/services/apiservice';
-import { environment } from '../../../environment';
+import { environment } from '../../../environments/environment';
 import { Technologies } from '../../models/Enums';
 
 @Injectable({ providedIn: 'root' })

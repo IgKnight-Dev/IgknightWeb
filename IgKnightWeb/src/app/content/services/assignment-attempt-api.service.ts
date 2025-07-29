@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ApiService } from "../../core/services/apiservice";
 import { AssignmentAnswerDto, AssignmentAttemptResultDto, UserAssignmentSummaryDto } from "../../models/assignment-attempt-result.dto";
-import { environment } from "../../../environment";
+import { environment } from "../../../environments/environment";
 
 @Injectable({ providedIn: 'root' })
 export class AssignmentAttemptApiService {

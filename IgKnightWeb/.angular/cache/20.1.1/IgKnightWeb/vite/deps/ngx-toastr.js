@@ -8,12 +8,12 @@ import {
 } from "./chunk-2J5BG6QJ.js";
 import {
   DomSanitizer
-} from "./chunk-MKSJAIVV.js";
+} from "./chunk-IE4ZVBY5.js";
 import "./chunk-EPRUZK3Y.js";
-import "./chunk-GAUGHO62.js";
 import {
   NgIf
 } from "./chunk-WFUUGZQP.js";
+import "./chunk-GAUGHO62.js";
 import "./chunk-PSX7AJZG.js";
 import {
   ANIMATION_MODULE_TYPE,

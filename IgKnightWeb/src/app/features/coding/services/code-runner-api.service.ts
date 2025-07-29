@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../../../core/services/apiservice';
-import { environment } from '../../../../environment';
+import { environment } from '../../../../environments/environment';
 import { TestResultDto } from '../models/coding-question.model';
 
 export interface CodeRunnerRequest {
