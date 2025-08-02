@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  loginApiUrl: 'https://your-login-api.azurewebsites.net/api/login',
-  contentApiUrl: 'https://your-content-api.azurewebsites.net/api/content'
+  loginApiUrl: 'https://igknightapi-fbbuh3esc2dshdad.westeurope-01.azurewebsites.net',
+  contentApiUrl: 'https://igknightapi-fbbuh3esc2dshdad.westeurope-01.azurewebsites.net'
 };
