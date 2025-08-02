@@ -37,6 +37,7 @@ export class OtpApiService {
 
   // Option 2: Return Promise by converting observable to promise
   getCaptcha(): Promise<CaptchaResponse> {
+      console.log(this.baseUrl, "base url")
       return this.apiService.get<CaptchaResponse>(this.baseUrl, 'captcha');
   }
 }
