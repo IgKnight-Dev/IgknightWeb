@@ -1,6 +1,6 @@
 {
   "/api/login": {
-    "target": "https://igknightapi-fbbuh3esc2dshdad.westeurope-01.azurewebsites.net",
+    "target": "http://localhost:7048",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug",
@@ -9,7 +9,7 @@
     }
   },
   "/api/content": {
-    "target": "https://igknightapi-fbbuh3esc2dshdad.westeurope-01.azurewebsites.net",
+    "target": "http://localhost:7153",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug",

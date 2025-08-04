@@ -36,6 +36,7 @@ export class CodingQuestionApiService {
 
   // ✅ GET: Get all questions
   async getAllQuestions(): Promise<CodingQuestionSummaryDto[]> {
+    console.log(this.baseUrl);
     return await this.http.get(this.baseUrl, `codingquestion/all`);
   }
 

@@ -9,11 +9,13 @@ import { Injectable } from '@angular/core';
 import { TokenService } from '../services/token.service';
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
 import { TokenRefreshService } from '../services/token-refresh.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private tokenService: TokenService,
+    private router: Router,
     private tokenRefreshService: TokenRefreshService
   ) {}
 
@@ -41,7 +43,7 @@ export class AuthInterceptor implements HttpInterceptor {
             }),
             catchError((refreshError) => {
               this.tokenService.clearTokens(); // logout user
-              window.location.href = '/login'; // optional redirect
+              this.router.navigate(['/login']);
               return throwError(() => refreshError);
             })
           );

@@ -11,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './question-tabs.scss'
 })
 export class QuestionTabs {
-  @Input() challenge!: CodingQuestionDto;
+  @Input() challengeId!: string;
+  challenge!: CodingQuestionDto;
 
   tabs: string[] = ['Description', 'Examples', 'Hints', 'Solution'];
   activeTab: string = 'Description';
@@ -29,6 +30,7 @@ export class QuestionTabs {
   ngOnInit(): void {
   const id = this.route.snapshot.paramMap.get('id');
   if (id) {
+    if(this.challenge == null){
     this.getChallenge(id).then(challenge => {
       this.challenge = challenge;
 
@@ -38,6 +40,7 @@ export class QuestionTabs {
       });
     });
   }
+  }
 }
 
   async getChallenge(id: string): Promise<CodingQuestionDto> {
@@ -45,6 +48,6 @@ export class QuestionTabs {
   }
 
   async loadSampleTestCases(id: string): Promise<CodingTestCaseDto[]> {
-  return await this.questionApi.getSampleTestCasesByQuestionId(id);
-}
+    return await this.questionApi.getSampleTestCasesByQuestionId(id);
+  }
 }

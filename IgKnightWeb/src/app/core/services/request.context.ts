@@ -39,6 +39,6 @@ export class RequestContextService {
     }
 
     canAccessAdminPanel(): boolean {
-        return (this.role != null && this.role !== 'user' && this.role!= undefined);
+        return this.role != null && this.role.toLowerCase() !== 'user' && this.role !== undefined;
     }
 }

@@ -1,13 +1,13 @@
 <a routerLink="/challenge" class="ml-6 text-sm text-gray-400 hover:text-green-100 flex items-center">
     ← Back to Challenges
   </a>
-<div class="px-6 py-6 mx-auto text-white" *ngIf="challenge">
+<div class="px-6 py-6 mx-auto text-white" *ngIf="challengeId">
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <!-- Left side: Question -->
     <div class="space-y-6">
       <!-- <app-meta-info [challenge]="challenge" /> -->
       <app-question-tabs>
-        <app-question-tabs [challenge]="challenge" tabName="Description" />
+        <app-question-tabs [challengeId]="challengeId" tabName="Description" />
         <!-- Future: constraints / hints / examples can be other tab contents -->
       </app-question-tabs>
     </div>

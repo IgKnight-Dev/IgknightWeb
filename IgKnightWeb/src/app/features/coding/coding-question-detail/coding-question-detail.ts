@@ -15,6 +15,7 @@ export class CodingQuestionDetail {
   challenge!: CodingQuestionDto;
   activeTab: TabType = TabType.Description;
   tabTypes = TabType;
+  challengeId: string = "";
 
   constructor(
       private questionApi: CodingQuestionApiService,
@@ -24,9 +25,10 @@ export class CodingQuestionDetail {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.getChallenge(id).then(challenge => {
-        this.challenge = challenge;
-      });
+      this.challengeId = id;
+      // this.getChallenge(id).then(challenge => {
+      //   this.challenge = challenge;
+      // });
     }
   }
 

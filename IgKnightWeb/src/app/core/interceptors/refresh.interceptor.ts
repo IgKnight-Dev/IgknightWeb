@@ -16,6 +16,7 @@ import {
 } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { TokenService } from '../services/token.service';
+import { TokenRefreshService } from '../services/token-refresh.service';
 
 @Injectable()
 export class RefreshTokenInterceptor implements HttpInterceptor {
@@ -24,8 +25,9 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
 
   constructor(
     private tokenService: TokenService,
-    private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private tokenRefreshService: TokenRefreshService
+  
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -49,28 +51,21 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
       const refreshToken = this.tokenService.getRefreshToken();
       if (!refreshToken) {
         this.tokenService.clearTokens();
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/login']);
         return throwError(() => new Error('No refresh token'));
       }
 
-      return this.http.post<any>('/api/login/auth/refresh-token', { refreshToken }).pipe(
-        switchMap((response) => {
-          this.isRefreshing = false;
-          this.tokenService.setTokens(response.accessToken, response.refreshToken);
-          this.refreshSubject.next(response.accessToken);
-
-          const clonedRequest = req.clone({
-            setHeaders: {
-              Authorization: `Bearer ${response.accessToken}`,
-            },
-          });
-
-          return next.handle(clonedRequest);
-        }),
+      return this.tokenRefreshService.refreshToken().pipe(
+            switchMap((newAccessToken: string) => {
+              const cloned = req.clone({
+                headers: req.headers.set('Authorization', `Bearer ${newAccessToken}`)
+              });
+              return next.handle(cloned);
+            }),
         catchError((err) => {
           this.isRefreshing = false;
           this.tokenService.clearTokens();
-          this.router.navigate(['/auth/login']);
+          this.router.navigate(['/login']);
           return throwError(() => err);
         })
       );
