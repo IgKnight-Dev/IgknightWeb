@@ -42,7 +42,7 @@
               {
                 "glob": "**/*",
                 "input": "node_modules/monaco-editor/min",
-                "output": "assets/monaco/min"
+                "output": "assets/monaco"
               },
               {
                 "glob": "**/*",
@@ -129,7 +129,7 @@
               {
                 "glob": "**/*",
                 "input": "node_modules/monaco-editor/min",
-                "output": "assets/monaco/min"
+                "output": "assets/monaco"
               },
               {
                 "glob": "**/*",
