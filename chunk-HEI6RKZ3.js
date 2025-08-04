@@ -85,7 +85,7 @@ int main() {
 }
 */
 
-// \u2193 Now write your function below this line:`,python:`# \u{1F680} Just write the function definition \u2014 no input(), print(), or main check.
+// \u2193 Now write your function below this line:`,python:`# \u{1F680} \u2014 no input(), print(), or main check.
 /*
 if __name__ == '__main__':
     # \u{1F9EA} We call your function and handle output automatically.
