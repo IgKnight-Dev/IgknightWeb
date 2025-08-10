@@ -17,7 +17,7 @@ export class TokenRefreshService {
     }
 
     // Convert the Promise returned by 'post' to Observable using 'from'
-    return from(this.http.post(this.baseUrl, '/auth/refresh-token', refreshToken )).pipe(
+    return from(this.http.post(this.baseUrl, '/auth/refresh-token', { refreshToken } )).pipe(
       map((response) => {
         // Save the new tokens in local storage or wherever necessary
         this.tokenService.setAccessToken(response.accessToken);

@@ -150,8 +150,6 @@ export class IntercativeQuizzes implements OnInit, OnDestroy {
         console.error('Error submitting attempt (guest):', error);
       });
   }
-
-  console.log('Submitting quiz with answers:', handleResult);
 }
 
   retakeQuiz(): void {

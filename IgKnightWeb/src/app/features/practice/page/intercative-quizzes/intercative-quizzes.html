@@ -249,11 +249,11 @@
       </div>
 
       <!-- Explanation -->
-      <div class="bg-gradient-to-br from-indigo-700 to-purple-800 p-4 rounded-md text-white">
-        <p class="text-sm font-semibold text-blue-300 flex items-center gap-2">
+      <div class="bg-gradient-to-br from-indigo-300 to-purple-800 p-4 rounded-md text-white">
+        <p class="text-sm font-semibold text-gray-800 font-bold flex items-center gap-2">
            Explanation
         </p>
-        <p class="mt-1">{{ review.explanation }}</p>
+            <p class="mt-1">{{ review.explanation ? review.explanation : 'No explanation' }}</p>
       </div>
     </div>
   </div>

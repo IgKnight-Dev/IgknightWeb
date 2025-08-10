@@ -44,7 +44,8 @@ int main() {
 }
 */
 
-// ↓ Now write your function below this line:`,
+// ↓ Now write your function below this line:
+// Don't modfiy the comment lines`,
 
   python: `# 🚀 Just write the function definition — no input(), print(), or main check.
 /*
@@ -53,7 +54,8 @@ if __name__ == '__main__':
     # 🖨️ Results are displayed from our side.
     # 📝 Pass all required inputs as parameters in the function.
 */
-# ↓ Start your function definition below this line:`,
+# ↓ Start your function definition below this line:
+# Don't modify the comment lines`,
 
   java: `// 🚀 Define only the method — no need to include class or main().
 /*
@@ -66,7 +68,8 @@ class Main {
 }
 */
 
-// ↓ Write your method below this line:`,
+// ↓ Write your method below this line:
+// Don't modify the comment lines`,
 };
 
 
@@ -187,8 +190,20 @@ class Main {
 
   getCleanCode(): string {
   const comment = this.defaultComments[this.language];
-  return this.code.replace(comment + '\n\n', '');
+
+  // Normalize line endings and trim leading whitespace
+  const normalizedCode = this.code.trimStart();
+
+  // Check if code starts with the guide comment (ignoring leading newlines/spaces)
+  if (normalizedCode.startsWith(comment)) {
+    // Remove only the guide comment block, keeping any user-added code after
+    return normalizedCode.slice(comment.length).trimStart();
+  }
+
+  // Fallback: return original code if comment is altered or missing
+  return this.code.trim();
 }
+
 
   resetCode() {
   const initialComment = this.defaultComments[this.language];

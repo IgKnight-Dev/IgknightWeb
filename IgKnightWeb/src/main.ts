@@ -12,6 +12,17 @@
 import { platformBrowser } from '@angular/platform-browser';
 import { AppModule } from './app/app-module';
 
+
+(window as any).MonacoEnvironment = {
+  getWorkerUrl: function (moduleId: string, label: string) {
+    return `data:text/javascript;charset=utf-8,${encodeURIComponent(`
+      self.MonacoEnvironment = { baseUrl: './assets/monaco/' };
+      importScripts('./assets/monaco/vs/base/worker/workerMain.js');
+    `)}`;
+  }
+};
+
+
 platformBrowser().bootstrapModule(AppModule, {
   ngZoneEventCoalescing: true,
 })

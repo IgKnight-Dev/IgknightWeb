@@ -9,7 +9,7 @@
     }
   },
   "/api/content": {
-    "target": "http://localhost:7153",
+    "target": "http://20.193.147.57",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug",
