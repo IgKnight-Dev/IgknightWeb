@@ -85,14 +85,16 @@ int main() {
 }
 */
 
-// \u2193 Now write your function below this line:`,python:`# \u{1F680} Just write the function definition \u2014 no input(), print(), or main check.
+// \u2193 Now write your function below this line:
+// Don't modfiy the comment lines`,python:`# \u{1F680} Just write the function definition \u2014 no input(), print(), or main check.
 /*
 if __name__ == '__main__':
     # \u{1F9EA} We call your function and handle output automatically.
     # \u{1F5A8}\uFE0F Results are displayed from our side.
     # \u{1F4DD} Pass all required inputs as parameters in the function.
 */
-# \u2193 Start your function definition below this line:`,java:`// \u{1F680} Define only the method \u2014 no need to include class or main().
+# \u2193 Start your function definition below this line:
+# Don't modify the comment lines`,java:`// \u{1F680} Define only the method \u2014 no need to include class or main().
 /*
 class Main {
     public static void main(String[] args) {
@@ -103,13 +105,12 @@ class Main {
 }
 */
 
-// \u2193 Write your method below this line:`};editorOptions={language:this.language,theme:"vs-dark",automaticLayout:!0,fontSize:14,minimap:{enabled:!1},readOnly:!1};ngOnInit(){let e=this.route.snapshot.paramMap.get("id");e&&(this.questionId=e);let i=this.defaultComments[this.language];i&&(this.code=i+`
+// \u2193 Write your method below this line:
+// Don't modify the comment lines`};editorOptions={language:this.language,theme:"vs-dark",automaticLayout:!0,fontSize:14,minimap:{enabled:!1},readOnly:!1};ngOnInit(){let e=this.route.snapshot.paramMap.get("id");e&&(this.questionId=e);let i=this.defaultComments[this.language];i&&(this.code=i+`
 
 `)}onEditorInit(e){this.monacoEditor=e,MC.defineTheme("igknight-editor-theme",{base:"vs-dark",inherit:!0,rules:[],colors:{"editor.background":"#12171eff","editor.foreground":"#ffffff"}}),MC.setTheme("igknight-editor-theme"),this.setDefaultComment(this.language)}setDefaultComment(e){let i=this.defaultComments[e];i&&this.monacoEditor&&(this.monacoEditor.setValue(i+`
 
-`),this.monacoEditor.setPosition({lineNumber:3,column:1}),this.monacoEditor.focus())}onLanguageChange(e){this.language=e,this.editorOptions=ye(ee({},this.editorOptions),{language:e})}runCode(){return v(this,null,function*(){if(!this.code||this.code.trim()===""){this.testResults=[],this.totalCount=0,this.passCount=0,this.errorMessage="Function definition not found",this.isRunning=!1;return}this.isRunning=!0,this.testResults=[],this.passCount=0,this.totalCount=0,this.errorMessage="";try{this.testResults=yield this.codeRunnerApi.runCode({code:this.getCleanCode(),language:this.language},this.questionId||""),this.totalCount=this.testResults.length,this.passCount=this.testResults.filter(e=>e.pass).length}catch(e){e?.error?.detail?this.errorMessage=e.error.detail:e?.detail?this.errorMessage=e.detail:e?.message?this.errorMessage=e.message:this.errorMessage="An unknown error occurred",this.testResults=[{id:0,pass:!1,isSample:!0,sampleInput:"",expected:""}]}finally{this.isRunning=!1}})}getCleanCode(){let e=this.defaultComments[this.language];return this.code.replace(e+`
-
-`,"")}resetCode(){let e=this.defaultComments[this.language];e&&(this.code=e+`
+`),this.monacoEditor.setPosition({lineNumber:3,column:1}),this.monacoEditor.focus())}onLanguageChange(e){this.language=e,this.editorOptions=ye(ee({},this.editorOptions),{language:e})}runCode(){return v(this,null,function*(){if(!this.code||this.code.trim()===""){this.testResults=[],this.totalCount=0,this.passCount=0,this.errorMessage="Function definition not found",this.isRunning=!1;return}this.isRunning=!0,this.testResults=[],this.passCount=0,this.totalCount=0,this.errorMessage="";try{this.testResults=yield this.codeRunnerApi.runCode({code:this.getCleanCode(),language:this.language},this.questionId||""),this.totalCount=this.testResults.length,this.passCount=this.testResults.filter(e=>e.pass).length}catch(e){e?.error?.detail?this.errorMessage=e.error.detail:e?.detail?this.errorMessage=e.detail:e?.message?this.errorMessage=e.message:this.errorMessage="An unknown error occurred",this.testResults=[{id:0,pass:!1,isSample:!0,sampleInput:"",expected:""}]}finally{this.isRunning=!1}})}getCleanCode(){let e=this.defaultComments[this.language],i=this.code.trimStart();return i.startsWith(e)?i.slice(e.length).trimStart():this.code.trim()}resetCode(){let e=this.defaultComments[this.language];e&&(this.code=e+`
 
 `)}copyCode(){navigator.clipboard.writeText(this.code)}expandEditor(){}openSettings(){}getExampleSnippet(e){return{python:`Code syntax:
 def greet(name: str) -> str:
