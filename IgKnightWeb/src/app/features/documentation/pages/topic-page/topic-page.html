@@ -1,38 +1,64 @@
-<div *ngIf="topicContent">
+<div *ngIf="topicContent" class="px-4 sm:px-0">
 
   <!-- Header -->
-  <div class="flex justify-between items-center mb-4">
-  <h1 class="text-2xl font-bold text-white">{{ topicContent.title }}</h1>
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 space-y-2 sm:space-y-0">
+    <h1 class="text-xl sm:text-2xl font-bold text-white">{{ topicContent.title }}</h1>
 
-  <button
-    *ngIf="technology === 'html' || technology === 'css' || technology === 'js'"
-    class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded transition-all duration-300"
-    (click)="navigateToTryEditor()">
-    Try Editor
-  </button>
-</div>
-
-
-  <!-- Main Content -->
-  <div class="mb-6 text-gray-300" [innerHTML]="topicContent.content"></div>
-
-  <!-- Code Samples -->
-  <div *ngFor="let code of topicContent.codeSamples; let i = index" class="mb-6 relative">
-    <pre class="bg-[#1F2937] p-4 rounded-lg overflow-auto text-green-400">
-      <code>{{ code.code }}</code>
-    </pre>
     <button
-
-      (click)="copyCode(code.code, i)"
-      class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white text-xs px-2 py-1 rounded z-10"
+      *ngIf="technology === 'html' || technology === 'css' || technology === 'js'"
+      class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded transition-all duration-300 w-full sm:w-auto"
+      (click)="navigateToTryEditor()"
     >
-      {{ copiedIndex === i ? '✅ Copied!' : '📋 Copy' }}
+      Try Editor
     </button>
   </div>
 
-  <!-- Pro Tip (Optional) -->
-  <div *ngIf="topicContent.proTip" class="bg-blue-900 text-blue-200 p-4 rounded-lg flex items-center">
-    💡 <span class="ml-2">{{ topicContent.proTip }}</span>
+  <!-- Main Content -->
+  <div class="mb-6 text-gray-300 text-sm sm:text-base leading-relaxed" [innerHTML]="topicContent.content"></div>
+
+  <!-- Code Samples -->
+  <div *ngFor="let code of topicContent.codeSamples; let i = index" class="mb-6 relative">
+    <pre class="bg-[#1F2937] p-3 sm:p-4 rounded-lg overflow-auto text-green-400 text-sm sm:text-base">
+      <code>{{ code.code }}</code>
+    </pre>
+    <button
+  (click)="copyCode(code.code, i)"
+  class="absolute top-2 right-2 bg-gray-700 hover:bg-gray-600 text-white text-xs sm:text-sm px-2 py-1 rounded z-10 flex items-center gap-1"
+>
+  <ng-container *ngIf="copiedIndex === i; else copyIcon">
+    <!-- Check Icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square-check-big-icon lucide-square-check-big"><path d="M21 10.656V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12.344"/><path d="m9 11 3 3L22 4"/></svg>
+    Copied!
+  </ng-container>
+
+  <ng-template #copyIcon>
+    <!-- Copy Icon -->
+     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy-icon lucide-copy"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+    Copy
+  </ng-template>
+</button>
+
   </div>
+
+  <!-- Pro Tip (Optional) -->
+  <div
+  *ngIf="topicContent.proTip"
+  class="bg-blue-900 text-blue-200 p-4 rounded-lg flex gap-3 items-start sm:items-center"
+>
+  <!-- Icon -->
+  <div class="flex-shrink-0 mt-1 sm:mt-0">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-300" fill="none" viewBox="0 0 24 24"
+         stroke="currentColor" stroke-width="2">
+      <path stroke-linecap="round" stroke-linejoin="round"
+            d="M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-2a7 7 0 0 0-4-12z"/>
+    </svg>
+  </div>
+
+  <!-- Text -->
+  <span class="text-sm leading-snug sm:text-base">
+    {{ topicContent.proTip }}
+  </span>
+</div>
+
 
 </div>

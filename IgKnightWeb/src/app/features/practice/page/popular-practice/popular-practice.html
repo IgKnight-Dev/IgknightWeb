@@ -1,37 +1,43 @@
-<!-- features/practice/pages/popular-practice/popular-practice.component.html -->
-<div class ="max-w-7xl mx-auto p-6">
+<div class="max-w-7xl mx-auto p-6">
   <!-- Heading + View All -->
-  <div class="flex items-center justify-between mb-6">
+  <div class="flex items-center justify-between mb-6 px-2 sm:px-0">
     <h2 class="text-2xl font-bold">🔥 Popular Practice Sets</h2>
     <a
-  routerLink="/practice/assignments"
-  class="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-2xl transition"
->
-  View All →
-</a>
-
+      routerLink="/practice/assignments"
+      class="inline-flex items-center bg-orange-500 hover:bg-orange-600 text-white text-sm font-semibold px-4 py-2 rounded-2xl transition"
+    >
+      View All →
+    </a>
   </div>
 
   <!-- Cards -->
-  <div class="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 gap-6">
+  <div
+    class="flex space-x-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:gap-6 sm:space-x-0"
+    style="-webkit-overflow-scrolling: touch;"
+  >
     <div
       *ngFor="let item of popularSets"
-      class="bg-gray-800 rounded-xl p-5 hover:scale-[1.02] transition-all shadow-lg"
+      class="bg-gray-800 rounded-xl p-5 hover:scale-[1.02] transition-all shadow-lg min-w-[260px] max-w-[260px] sm:min-w-0 sm:max-w-none flex-shrink-0 flex flex-col justify-between"
     >
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="text-lg font-semibold text-white">{{ item.title }}</h3>
-        <span class="bg-orange-600 text-sm px-2 py-1 rounded">
-          {{ technologies[item.technology] }}
-        </span>
+      <!-- Card Top -->
+      <div>
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="text-lg font-semibold text-white truncate w-3/4">{{ item.title }}</h3>
+          <span class="bg-orange-600 text-sm px-2 py-1 rounded whitespace-nowrap text-ellipsis overflow-hidden max-w-[80px] text-center">
+            {{ technologies[item.technology] }}
+          </span>
+        </div>
+
+        <p class="text-gray-400 text-sm mb-4 line-clamp-3 h-[60px] overflow-hidden">
+          {{ item.description }}
+        </p>
       </div>
 
-      <p class="text-gray-400 text-sm mb-4">
-        {{ item.description }}
-      </p>
-
+      <!-- Button fixed at bottom -->
       <button
-        class="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded text-white font-semibold"
-        (click)="startQuiz(item)">
+        class="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded text-white font-semibold w-full mt-auto"
+        (click)="startQuiz(item)"
+      >
         🚀 Start Quiz
       </button>
     </div>

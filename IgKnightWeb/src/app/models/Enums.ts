@@ -11,7 +11,8 @@ export enum Technology {
   TypeScript = 'ts',
   Python = 'python',
   DotNet = 'dotnet',
-  CSharp = 'csharp'
+  CSharp = 'csharp',
+  Fullstack = 'fullstack'
 }
 
 export enum Technologies {
@@ -91,7 +92,8 @@ export const TechnologyDescriptions: Record<string, string> = {
   [Technology.TypeScript]: 'Level up your skills with TypeScript.',
   [Technology.Python]: 'Explore Python programming.',
   [Technology.DotNet]: '.NET framework development.',
-  [Technology.CSharp]: 'Deep dive into C# language.'
+  [Technology.CSharp]: 'Deep dive into C# language.',
+  [Technology.Fullstack]: 'Build complete web apps from frontend to backend.'
 };
 
 

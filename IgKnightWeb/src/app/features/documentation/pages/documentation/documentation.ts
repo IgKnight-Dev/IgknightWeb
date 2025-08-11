@@ -14,10 +14,14 @@ export class Documentation implements OnInit, OnChanges {
   selectedTechnology: string = '';
   description: string = '';
   currentYear: number = new Date().getFullYear();
+  isMobile = false;
+  showTopics = false;
 
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
+    this.checkScreenSize();
+    window.addEventListener('resize', () => this.checkScreenSize());
     this.router.events.pipe(
     filter(event => event instanceof NavigationEnd)
   ).subscribe(() => {
@@ -50,4 +54,8 @@ ngOnChanges(): void {
     }
   });
 }
+  checkScreenSize() {
+  this.isMobile = window.innerWidth < 768; // Tailwind md breakpoint
+}
+
 }

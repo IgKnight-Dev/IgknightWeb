@@ -1,12 +1,12 @@
 <section class="py-12 px-4 bg-slate-950 text-white text-center border-t border-slate-800">
-  <div class="max-w-8xl ml-7 relative">
+  <div class="max-w-8xl relative">
     <!-- Heading -->
     <div class="text-left ml-20 mb-6">
       <h2 class="text-3xl font-bold text-white mb-4">Trending Tracks</h2>
     </div>
 
     <!-- Scrollable Wrapper with Padding for Buttons -->
-    <div class="relative px-10">
+    <div class="relative px-4 sm:px-10 md:px-10">
       <!-- Left Scroll Button -->
       <button 
         (click)="scrollLeft()"
@@ -37,25 +37,30 @@
         class="flex gap-6 overflow-x-auto overflow-y-hidden scroll-smooth snap-x snap-mandatory py-4 custom-scroll touch-auto"
       >
         <div
-          *ngFor="let track of techPreviews"
-          role="button"
-          tabindex="0"
-          (click)="navigateToCourses(track)"
-          (keydown.enter)="navigateToCourses(track)"
-          class="min-w-[220px] sm:min-w-[260px] h-[160px] sm:h-[170px] bg-gradient-to-br from-slate-900 to-slate-800 border border-orange-500 rounded-xl p-5 flex flex-col justify-between snap-start hover:shadow-lg hover:ring-2 hover:ring-orange-400 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500"
-        >
-          <div>
-            <h3 class="text-white text-lg font-semibold mb-1 truncate">{{ track.title }}</h3>
-            <p class="text-sm text-gray-400">{{ track.description }}</p>
-          </div>
+  *ngFor="let track of techPreviews"
+  role="button"
+  tabindex="0"
+  (click)="navigateToCourses(track)"
+  (keydown.enter)="navigateToCourses(track)"
+  class="min-w-[220px] sm:min-w-[260px] h-[160px] bg-gradient-to-br from-slate-900 to-slate-800 border border-orange-500 rounded-xl p-4 flex flex-col snap-start hover:shadow-lg hover:ring-2 hover:ring-orange-400 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-orange-500"
+>
+  <!-- Content Area -->
+  <div class="flex flex-col flex-grow">
+    <h3 class="text-white text-lg font-semibold mb-1 truncate">{{ track.title }}</h3>
+    <p class="text-sm text-gray-400 overflow-hidden leading-5"
+       style="height: 4.2rem; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;">
+      {{ track.description }}
+    </p>
+  </div>
 
-          <span
-            class="self-start px-3 py-1 text-xs font-semibold rounded-full border border-orange-400 text-orange-300 bg-slate-700"
-            [ngClass]="getBadgeColor(track.level)"
-          >
-            {{ track.level }}
-          </span>
-        </div>
+  <!-- Badge -->
+  <span
+    class="self-start px-3 py-1 text-xs font-semibold rounded-full border border-orange-400 text-orange-300 bg-slate-700 mt-auto"
+    [ngClass]="getBadgeColor(track.level)"
+  >
+    {{ track.level }}
+  </span>
+</div>
       </div>
     </div>
   </div>

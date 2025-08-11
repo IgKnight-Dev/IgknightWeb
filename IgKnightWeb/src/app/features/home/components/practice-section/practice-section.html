@@ -1,40 +1,42 @@
 <section class="py-16 px-4 bg-slate-900">
   <div class="max-w-7xl mx-auto">
-    <h2 class="text-3xl font-bold text-white mb-8">Practice & Prepare</h2>
+    <h2 class="text-3xl font-bold text-white mb-10">Practice &amp; Prepare</h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Mobile: horizontal scroll | Desktop: grid -->
+    <div class="flex md:grid gap-3 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:grid-cols-3">
+      
       <!-- Quizzes -->
-<a
-  routerLink="/practice/assignments"
-  class="flex items-center space-x-4  rounded-lg p-2"
->
-  <div class="bg-orange-500 w-12 h-12 rounded-lg flex items-center justify-center text-white text-xl font-bold">
-    ✓
-  </div>
-  <h3 class="text-xl font-semibold text-white">Quizzes</h3>
-</a>
+      <a
+        routerLink="/practice/assignments"
+        class="flex-shrink-0 w-36 md:w-auto flex items-center gap-2 p-2 rounded-lg hover:bg-slate-800 transition-colors snap-start"
+      >
+        <div class="bg-orange-500 w-9 h-9 md:w-12 md:h-12 rounded-lg flex items-center justify-center text-white text-base md:text-xl font-bold">
+          ✓
+        </div>
+        <h3 class="text-sm md:text-xl font-semibold text-white">Quizzes</h3>
+      </a>
 
-<!-- Coding Challenges -->
-<a
-  routerLink="/challenge"
-  class="flex items-center space-x-4 p-2"
->
-  <div class="bg-orange-500 w-12 h-12 rounded-lg flex items-center justify-center text-white text-xl font-bold">
-    &lt;/&gt;
-  </div>
-  <h3 class="text-xl font-semibold text-white">Coding Challenges</h3>
-</a>
+      <!-- Coding Challenges -->
+      <a
+        routerLink="/challenge"
+        class="flex-shrink-0 w-36 md:w-auto flex items-center gap-2 p-2 rounded-lg hover:bg-slate-800 transition-colors snap-start"
+      >
+        <div class="bg-orange-500 w-9 h-9 md:w-12 md:h-12 rounded-lg flex items-center justify-center text-white text-sm md:text-lg font-bold">
+          &lt;/&gt;
+        </div>
+        <h3 class="text-sm md:text-xl font-semibold text-white">Coding Challenges</h3>
+      </a>
 
-<!-- Interview Prep -->
-<a
-  routerLink="/practice/interview-prep"
-  class="flex items-center space-x-4  p-2"
->
-  <div class="bg-orange-500 w-12 h-12 rounded-lg flex items-center justify-center text-white text-xl font-bold">
-    ?
-  </div>
-  <h3 class="text-xl font-semibold text-white">Interview Prep</h3>
-</a>
+      <!-- Interview Prep -->
+      <a
+        routerLink="/practice/interview-prep"
+        class="flex-shrink-0 w-36 md:w-auto flex items-center gap-2 p-2 rounded-lg hover:bg-slate-800 transition-colors snap-start"
+      >
+        <div class="bg-orange-500 w-9 h-9 md:w-12 md:h-12 rounded-lg flex items-center justify-center text-white text-base md:text-xl font-bold">
+          ?
+        </div>
+        <h3 class="text-sm md:text-xl font-semibold text-white">Interview Prep</h3>
+      </a>
     </div>
   </div>
 </section>

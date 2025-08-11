@@ -13,6 +13,7 @@ export class TopicList implements OnInit, OnChanges {
   @Input() technology: string = '';
   topics: Topic[] = [];
   selectedSlug: string = '';
+  showTopics = false;
 
   constructor(
     private documentationService: DocumentationService,

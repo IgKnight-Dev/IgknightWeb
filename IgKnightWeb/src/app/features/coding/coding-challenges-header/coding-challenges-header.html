@@ -1,46 +1,54 @@
-<!-- features/practice/layout/practice-layout.component.html -->
 <div class="min-h-screen bg-[#0D1117] text-white">
-  <!-- Header -->
-  <header
-    class="flex flex-wrap sm:flex-nowrap justify-between items-center gap-3 sm:gap-0 h-auto sm:h-16 px-4 sm:px-6 py-3 sm:py-0 bg-igknightHeader text-white border-b border-white/10"
-  >
-    <!-- Left: Logo + Trailblazers -->
-    <div class="flex flex-wrap items-center gap-3">
-      <a routerLink="/" class="flex items-center gap-2 hover:opacity-90 transition">
-            <div class="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg flex items-center justify-center">
-                <span class="text-white font-bold text-lg"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code-xml-icon lucide-code-xml"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg></span>
-            </div>
-            <span class="text-2xl font-bold text-white">IGKNIGHT</span>
-        </a>
 
-      <!-- Trailblazers button (wraps on small screens) -->
-        <a
-        routerLink="/heroes"
-        class="px-4 py-2 rounded-full text-white bg-transparent hover:text-white hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:shadow-md transition-all duration-300"
-        >
-        Meet the Trailblazers →
-        </a>
-    </div>
+<header class="flex items-center h-16 px-4 sm:px-6 bg-igknightHeader text-white border-b border-white/10 flex-nowrap">
+  <!-- Left: Logo & Navigation -->
+  <div class="flex items-center space-x-2 flex-grow flex-nowrap">
+    <a routerLink="/" class="flex items-center gap-2 hover:opacity-90 transition">
+      <div class="w-6 h-6 sm:w-8 sm:h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg flex items-center justify-center">
+        <span class="text-white font-bold text-base sm:text-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-code-xml-icon lucide-code-xml">
+            <path d="m18 16 4-4-4-4"/>
+            <path d="m6 8-4 4 4 4"/>
+            <path d="m14.5 4-5 16"/>
+          </svg>
+        </span>
+      </div>
+      <span class="font-bold text-xl sm:text-2xl">IGKNIGHT</span>
+    </a>
+    
+    <!-- Heroes Link -->
+    <a 
+      routerLink="/heroes" 
+      class="md:px-4 md:py-2 md:ml-6 sm:ml-2 rounded-full text-white bg-transparent hover:text-white hover:bg-gradient-to-r hover:from-cyan-400 hover:to-blue-500 hover:shadow-md transition-all duration-300 text-sm md:text-base"
+    >
+      Meet the Trailblazers →
+    </a>
+  </div>
 
-    <!-- Right: Navigation -->
-    <nav class="flex flex-wrap items-center gap-2 sm:gap-6">
-    <a routerLink="/practice" class="hover:text-cyan-400 transition duration-200">Practice</a>
-  <button
-    *ngIf="!isLoggedIn"
-    [routerLink]="'/login'"
-    class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-4 py-1 rounded-md transition text-sm"
-  >
-    Login
-  </button>
+  <!-- Desktop Navigation -->
+  <nav class="mr-4 sm:mr-6 md:mr-10 hidden md:flex items-center space-x-6 flex-nowrap">
+    <a routerLink="/documentation" class="hover:text-orange-500 transition duration-200 whitespace-nowrap">Courses</a>
+    <a routerLink="/practice" class="hover:text-orange-500 transition duration-200 whitespace-nowrap">Practice</a>
+  </nav>
 
-  <button
-    *ngIf="isLoggedIn"
-    [routerLink]="'/profile'"
-    class="bg-gradient-to-r from-green-400 to-blue-500  text-white px-4 py-1 rounded-md transition text-sm"
-  >
-    View Profile
-  </button>
-</nav>
+  <!-- Right: Auth Buttons -->
+  <div class="flex items-center space-x-2 sm:space-x-4 flex-nowrap">
+    <button 
+      *ngIf="!isLoggedIn"
+      [routerLink]="'/login'" 
+      class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-3 py-1 rounded-md transition text-xs sm:text-sm"
+    >
+      Login
+    </button>
+
+    <button 
+      *ngIf="isLoggedIn"
+      [routerLink]="'/profile'" 
+      class="bg-gradient-to-r from-green-400 to-blue-500 text-white px-3 py-1 rounded-md transition text-xs sm:text-sm"
+    >
+      View Profile
+    </button>
+  </div>
 </header>
 
   <!-- Page content -->

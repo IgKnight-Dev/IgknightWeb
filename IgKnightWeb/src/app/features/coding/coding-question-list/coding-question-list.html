@@ -1,4 +1,4 @@
-<div class="bg-[#131c2b] mb-3  p-5 rounded-xl border border-[#2d3748] hover:border-cyan-500 transition-all">
+<div class="bg-[#131c2b] mb-3 p-5 rounded-xl border border-[#2d3748] hover:border-cyan-500 transition-all">
   <!-- Header Row -->
   <div class="flex justify-between items-start">
     <!-- Left: Title + Tags -->
@@ -9,25 +9,24 @@
 
       <div class="flex items-center gap-2 mt-1">
         <span class="text-xs font-medium rounded-full px-2 py-0.5 w-fit"
-                [ngClass]="difficultyMap[challenge.difficulty].class">{{ difficultyMap[challenge.difficulty].label }}</span>
+              [ngClass]="difficultyMap[challenge.difficulty].class">{{ difficultyMap[challenge.difficulty].label }}</span>
         <span class="text-xs text-gray-200 bg-gray-700 px-2 py-0.5 rounded-full">{{ categoryMap[challenge.category].label }}</span>
       </div>
     </div>
 
     <!-- Right: Stats + Solve -->
     <div class="flex flex-col items-end text-xs text-gray-400 gap-1">
-      <button (click) = routeToCodeChallenge() class="flex items-center gap-2 px-4 py-1.5 rounded-md font-semibold text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 transition">
+      <button (click)="routeToCodeChallenge()" class="flex items-center gap-2 px-4 py-1.5 rounded-md font-semibold text-white bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 18l6-6-6-6M8 6l-6 6 6 6"/>
         </svg>
         Solve
       </button>
-
     </div>
   </div>
 
-  <!-- Description -->
-  <p class="text-sm text-gray-400 mt-3 leading-snug">
+  <!-- Description with fixed height (3 line clamp) -->
+  <p class="text-sm text-gray-400 mt-3 leading-snug line-clamp-3">
     {{ challenge.description }}
   </p>
 

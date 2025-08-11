@@ -1,4 +1,4 @@
-<div class="px-6 py-8 max-w-7xl ml-24 text-white">
+<div class="px-6 py-8 max-w-7xl ml-0 md:ml-24 text-white">
   <!-- Header -->
   <div class="text-center mb-8">
     <div class="inline-block bg-green-900 text-green-400 inline-flex gap-2 px-4 rounded-full text-sm font-semibold">
@@ -46,44 +46,44 @@
   </div>
 
   <!-- Filters -->
-  <!-- Filters -->
-<div class="grid grid-cols-5 gap-4 mb-6">
-  <input 
-    [(ngModel)]="searchTerm"
-    (ngModelChange)="applyFilters()"
-    type="text"
-    placeholder="🔍 Search challenges..."
-    class="col-span-2 p-2 bg-gray-800 text-sm rounded-md border border-gray-700 focus:outline-none w-full" />
+  <div class="grid grid-cols-1 md:grid-cols-5 gap-4 mb-6">
+    <input 
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="applyFilters()"
+      type="text"
+      placeholder="🔍 Search challenges..."
+      class="col-span-1 md:col-span-2 p-2 bg-gray-800 text-sm rounded-md border border-gray-700 focus:outline-none w-full" />
 
-  <select 
-    [(ngModel)]="selectedDifficulty"
-    (ngModelChange)="applyFilters()"
-    class="p-2 bg-gray-800 text-sm rounded-md border border-gray-700 text-white w-full">
-    <option value="All">All Difficulties</option>
-    <option *ngFor="let difficulty of difficultyLevels" [value]="difficulty">{{ difficulty }}</option>
-  </select>
+    <select 
+      [(ngModel)]="selectedDifficulty"
+      (ngModelChange)="applyFilters()"
+      class="p-2 bg-gray-800 text-sm rounded-md border border-gray-700 text-white w-full">
+      <option value="All">All Difficulties</option>
+      <option *ngFor="let difficulty of difficultyLevels" [value]="difficulty">{{ difficulty }}</option>
+    </select>
 
-  <select 
-    [(ngModel)]="selectedCategory"
-    (ngModelChange)="applyFilters()"
-    class="p-2 bg-gray-800 text-sm rounded-md border border-gray-700 text-white w-full">
-    <option value="All">All Categories</option>
-    <option *ngFor="let category of codingCategories" [value]="category">{{ category }}</option>
-  </select>
+    <select 
+      [(ngModel)]="selectedCategory"
+      (ngModelChange)="applyFilters()"
+      class="p-2 bg-gray-800 text-sm rounded-md border border-gray-700 text-white w-full">
+      <option value="All">All Categories</option>
+      <option *ngFor="let category of codingCategories" [value]="category">{{ category }}</option>
+    </select>
 
-  <select 
-    [(ngModel)]="selectedSort"
-    (ngModelChange)="applyFilters()"
-    class="p-2 bg-gray-800 text-sm rounded-md border border-gray-700 text-white w-full">
-    <option value="popular">Most Popular</option>
-    <option value="newest">Newest</option>
-    <option value="acceptance">Highest Acceptance</option>
-  </select>
-</div>
-
+    <select 
+      [(ngModel)]="selectedSort"
+      (ngModelChange)="applyFilters()"
+      class="p-2 bg-gray-800 text-sm rounded-md border border-gray-700 text-white w-full">
+      <option value="popular">Most Popular</option>
+      <option value="newest">Newest</option>
+      <option value="acceptance">Highest Acceptance</option>
+    </select>
+  </div>
 
   <!-- Challenge Cards -->
-  <div class="text-sm text-gray-400 mb-2">Showing 6 of 6 challenges</div>
+<div class="text-sm text-gray-400 mb-2">
+  Showing {{ filteredChallenges.length }} of {{ challenges.length }} challenges
+</div>
   <div class="space-y-4">
     <app-coding-question-list *ngFor="let challenge of filteredChallenges" [challenge]="challenge"></app-coding-question-list>
   </div>
